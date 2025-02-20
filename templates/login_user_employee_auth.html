@@ -101,12 +101,16 @@
     <div class="overlay"></div>
     <div class="login-container">
         <h2>Welcome to United Bank Limited</h2>
-        <form method="POST" action="/login">
+        <form action="/login_user_employee_auth" method="POST">
+            
             <input type="hidden" name="action" value="login">
-            <label for="userid">Admin ID:</label>
-            <input type="number" name="userid" placeholder="Enter Admin ID" required>
+
+            <label for="userid">ID:</label>
+            <input type="number" name="userid" placeholder="Enter your ID" required>
+
             <label for="password">Password:</label>
             <input type="password" name="password" placeholder="Enter your Password" required>
+
             <button type="submit">Login</button>
             <a href="/signup">Create a New Account!</a>
         </form>

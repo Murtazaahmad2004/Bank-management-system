@@ -2,8 +2,7 @@ import random
 import string
 import datetime
 import MySQLdb
-from django import db
-from flask import Flask, flash, jsonify, logging, render_template, request, redirect, session, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -38,15 +37,47 @@ class Employee(User):
 
 # Routes
 
-# Homepage
+# Homepage (Login Form)
 @app.route('/')
 def home():
     return render_template('login_user_employee_auth.html')
 
-# signup
+# Signup Page
 @app.route('/signup')
 def signup():
     return render_template('signup.html')
+
+# Logout 
+@app.route('/login_user_employee_auth')
+def logout():
+    return redirect(url_for('home'))
+
+# Account Management Page
+@app.route('/account_manage_entity')
+def account_manage_entity():
+    return render_template('account_manage_entity.html')
+
+# Login
+@app.route('/login_user_employee_auth', methods=['POST'])
+def login_user_employee_auth():
+    user_id = request.form.get('userid')
+    password = request.form.get('password')
+
+    # Authenticate User
+    if user_id == "1" and password == "123":
+        return redirect(url_for('account_manage_entity'))  # Redirect if credentials are correct
+    else:
+        return "Invalid credentials. Please try again."
+
+#open acc
+@app.route('/open_digital_account')
+def open_digital_account():
+    return render_template('open_digital_account.html')
+
+# blocked acc
+@app.route('/blocked_acc')
+def blocked_accounts():
+    return render_template('blocked_acc.html')
 
 # Run the app
 if __name__ == '__main__':

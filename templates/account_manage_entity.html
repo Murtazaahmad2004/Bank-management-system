@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        /* Reset default margins and paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9; /* Light gray background */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full screen height */
+        }
+
+        /* Dashboard container styling */
+        .dashboard-container {
+            text-align: center;
+            background-color: #ffffff; /* White card background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+            width: 80%;
+            max-width: 600px;
+        }
+
+        /* Heading styling */
+        .dashboard-container h1 {
+            margin-bottom: 20px;
+            color: black; /* Green accent */
+            font-size: 2em;
+        }
+
+        /* Description styling */
+        .dashboard-container p {
+            margin-bottom: 30px;
+            color: #666; /* Lighter text */
+        }
+
+        /* List styling */
+        .dashboard-container ul {
+            list-style-type: none;
+        }
+
+        /* List item styling */
+        .dashboard-container ul li {
+            margin: 15px 0;
+        }
+
+        /* Link button styling */
+        .dashboard-container ul li a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        /* Hover effect for links */
+        .dashboard-container ul li a:hover {
+            background-color: #45a049; /* Darker green on hover */
+            transform: scale(1.05); /* Slight zoom effect */
+        }
+
+        /* Logout button styling */
+        .dashboard-container ul li a:last-child {
+            background-color: #e53935; /* Red for logout */
+        }
+
+        .dashboard-container ul li a:last-child:hover {
+            background-color: #d32f2f; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Employee Dashboard</h1>
+        <p>Welcome To Employee Dashboard. Choose an action below:</p>
+        <ul>
+            <li><a href="/open_digital_account">Open Digital Account</a></li>
+            <li><a href="/blocked_acc">Blocked your Account</a></li>
+            <li><a href="/card_managemenet">Card Management</a></li>
+            <li><a href="#">Cheque Book Management</a></li>
+            <li><a href="#">Deposit Money</a></li>
+            <li><a href="/login_user_employee_auth">Logout</a></li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Open Digital Account</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            background: linear-gradient(to bottom, #f5f6f6, #f6f8f9);
+        }
+
+        /* Overlay for better readability */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            z-index: -1;
+        }
+
+        /* Form Container */
+        .signup-container {
+            width: 90%;
+            max-width: 800px;
+            height: 700px; /* Set a fixed height */
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+
+
+        /* Header Styling */
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #4CAF50;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            align-self: flex-start;
+            margin: 10px 0 5px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        form button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: scale(1.03); /* Slight scale on hover */
+        }
+
+        form a {
+            color: black; /* Keep text white on the button */
+            text-decoration: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px; /* Space between options */
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between radio and label */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="signup-container">
+        <h1>Open Digital Account</h1>
+        <form method="POST" action="/open_digital_account">
+            <input type="hidden" name="action" value="register">
+
+            <label for="branchcode">Branch Code:</label>
+            <input type="text" id="branchcode" name="branchcode" placeholder="Enter Branch Code" required>
+
+            <label for="acctno">Account Number:</label>
+            <input type="number" id="acctno" name="acctno" placeholder="Enter Account Number" required>
+
+            <label for="full_name">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" placeholder="Enter your Full Name" required>
+            
+            <label for="emial">Email:</label>
+            <input type="text" id="emial" name="emial" placeholder="Enter your Email" required>
+
+            <label for="phone_no">Phone Number:</label>
+            <input type="number" id="phone_no" name="phone_no" placeholder="Enter your Phone Number" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your Address" required>
+
+            <label for="d_o_b">Date of Birth:</label>
+            <input type="date" id="d_o_b" name="d_o_b" required>
+
+            <label for="marital_sts">Marital Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="single" name="marital_sts" value="single" required>
+                        <label for="single">Single</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="maried" name="marital_sts" value="maried" required>
+                        <label for="maried">Maried</label>
+                    </div>
+                </div>
+
+            <label for="nationality">Nationality:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="pakistani" name="nationality" value="pakistani" required>
+                        <label for="pakistani">Pakistani</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="foriegn" name="nationality" value="foriegn" required>
+                        <label for="foriegn">Foriegn</label>
+                    </div>
+                </div>            
+
+            <label for="gender">Gender:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="male" name="gender" value="male" required>
+                        <label for="male">Male</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="female" name="gender" value="female" required>
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+
+            <label for="id_card">ID Card Number:</label>
+            <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
+
+            <label for="occup">Occupation:</label>
+            <input type="text" id="occup" name="occup" placeholder="Enter your Occupation" required>
+
+            <label for="soin">Source Of Income:</label>
+            <input type="text" id="soin" name="soin" placeholder="Enter your Source Of Income" required>
+
+            <label for="monthlyincom">Monthly Income:</label>
+            <input type="number" id="monthlyincom" name="monthlyincom" placeholder="Enter your Monthly Income" required>
+
+            <label for="acctyp">Account Type:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="saving" name="acctyp" value="saving" required>
+                        <label for="saving">Saving</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="current" name="acctyp" value="current" required>
+                        <label for="current">Current</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="business" name="acctyp" value="business" required>
+                        <label for="business">Business</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="joint" name="acctyp" value="joint" required>
+                        <label for="joint">Joint</label>
+                    </div>
+                </div>
+
+                <label for="init_dep_amo">Initial Deposit Amount:</label>
+                <input type="text" id="init_dep_amo" name="init_dep_amo" placeholder="Enter Initial Deposit Amount" required>
+
+                <label for="acctporp">Account Purpose:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="personal" name="acctyp" value="personal" required>
+                        <label for="personal">Personal</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="business" name="acctyp" value="business" required>
+                        <label for="business">Business</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="investment" name="acctyp" value="investment" required>
+                        <label for="investment">Investment</label>
+                    </div>
+                </div>
+
+                <label for="cardreq">Debit Card Required:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="Yes" name="acctyp" value="Yes" required>
+                        <label for="Yes">Yes</label>
+                        <input type="radio" id="No" name="acctyp" value="No" required>
+                        <label for="No">No</label>
+                    </div>
+
+                    <label for="cardreq">Online banking Access:</label>
+                    <div class="radio-item">
+                        <input type="radio" id="Yes" name="acctyp" value="Yes" required>
+                        <label for="Yes">Yes</label>
+                        <input type="radio" id="No" name="acctyp" value="No" required>
+                        <label for="No">No</label>
+                    </div>
+
+                    <label for="cardreq">Checkbook Request :</label>
+                    <div class="radio-item">
+                        <input type="radio" id="Yes" name="acctyp" value="Yes" required>
+                        <label for="Yes">Yes</label>
+                        <input type="radio" id="No" name="acctyp" value="No" required>
+                        <label for="No">No</label>
+                    </div>
+
+                    <label for="cardreq">SMS Banking Alerts:</label>
+                    <div class="radio-item">
+                        <input type="radio" id="Yes" name="acctyp" value="Yes" required>
+                        <label for="Yes">Yes</label>
+                        <input type="radio" id="No" name="acctyp" value="No" required>
+                        <label for="No">No</label>
+                    </div>
+                </div>
+
+                <label>
+                    <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+                </label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

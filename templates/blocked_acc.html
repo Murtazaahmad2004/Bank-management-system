@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sign Up Screen</title>
+    <title>Blocked Account</title>
     <style>
         /* General Reset */
         * {
@@ -76,7 +76,7 @@
         }
 
         form button {
-            width: 100%;
+            width: 50%;
             padding: 10px;
             border: none;
             border-radius: 5px;
@@ -112,18 +112,18 @@
 <body>
     <div class="overlay"></div>
     <div class="signup-container">
-        <h1>Sign Up Screen</h1>
-        <form method="POST" action="/register">
+        <h1>Blocked Account</h1>
+        <form method="POST" action="/blocked_acc">
             <input type="hidden" name="action" value="register">
 
-            <label for="user_id">User ID:</label>
-            <input type="number" id="user_id" name="user_id" placeholder="Enter User ID" required>
-            
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" placeholder="Enter your First Name" required>
+            <label for="branchcode">Branch Code:</label>
+            <input type="text" id="branchcode" name="branchcode" placeholder="Enter Branch Code" required>
 
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Enter your Last Name" required>
+            <label for="acctno">Account Number:</label>
+            <input type="number" id="acctno" name="acctno" placeholder="Enter Account Number" required>
+
+            <label for="full_name">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" placeholder="Enter your Full Name" required>
             
             <label for="emial">Email:</label>
             <input type="text" id="emial" name="emial" placeholder="Enter your Email" required>
@@ -131,32 +131,55 @@
             <label for="phone_no">Phone Number:</label>
             <input type="number" id="phone_no" name="phone_no" placeholder="Enter your Phone Number" required>
 
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter your Address" required>
+            <label for="id_card">ID Card Number:</label>
+            <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
 
-            <label for="d_o_b">Date of Birth:</label>
-            <input type="text" id="d_o_b" name="d_o_b" placeholder="Enter your Date of Birth" required>
-
-            <label for="gender">Gender:</label>
+            <label for="acctyp">Account Type:</label>
                 <div class="radio-group">
                     <div class="radio-item">
-                        <input type="radio" id="male" name="gender" value="male" required>
-                        <label for="male">Male</label>
+                        <input type="radio" id="saving" name="acctyp" value="saving" required>
+                        <label for="saving">Saving</label>
                     </div>
                     
                     <div class="radio-item">
-                        <input type="radio" id="female" name="gender" value="female" required>
-                        <label for="female">Female</label>
+                        <input type="radio" id="current" name="acctyp" value="current" required>
+                        <label for="current">Current</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="business" name="acctyp" value="business" required>
+                        <label for="business">Business</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="joint" name="acctyp" value="joint" required>
+                        <label for="joint">Joint</label>
                     </div>
                 </div>
 
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password" placeholder="Enter your Password" required>
+                <label for="acctporp">Account Purpose:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="personal" name="acctyp" value="personal" required>
+                        <label for="personal">Personal</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="business" name="acctyp" value="business" required>
+                        <label for="business">Business</label>
+                    </div>
 
-            <label for="confirmpass">Confirm Password:</label>
-            <input type="text" id="confirmpass" name="confirmpass" placeholder="Enter your Confirm Password" required>
+                    <div class="radio-item">
+                        <input type="radio" id="investment" name="acctyp" value="investment" required>
+                        <label for="investment">Investment</label>
+                    </div>
+                </div>
 
-            <button type="submit">Sign UP</button>
+                <label>
+                    <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+                </label>
+
+            <button type="submit">Submit</button>
         </form>
     </div>
 </body>
