@@ -8,6 +8,8 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+app.secret_key = '123789456'
+
 # Database Configuration
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
@@ -86,17 +88,30 @@ def chequebook_management():
 def deposit_money():
     return render_template('emp_dashboard/deposit_money.html')
 
-# Login
+# Manager dashboard
+@app.route('/manager_dashboard')
+def manager_dashboard():
+    return render_template('admin_dashboard/manager_dashboard.html')  # Ensure this template exists
+
+# Login Authentication
 @app.route('/login_user_employee_auth', methods=['POST'])
 def login_user_employee_auth():
     user_id = request.form.get('userid')
     password = request.form.get('password')
 
-    # Authenticate User
+    # Authenticate Employee
     if user_id == "1" and password == "123":
-        return redirect(url_for('account_manage_entity'))  # Redirect if credentials are correct
-    else:
-        return "Invalid credentials. Please try again."
+        session['user_id'] = user_id
+        session['role'] = 'employee'
+        return redirect(url_for('account_manage_entity'))
+
+    # Authenticate Manager (formerly Admin)
+    elif user_id == "2" and password == "321":
+        session['user_id'] = user_id
+        session['role'] = 'manager'
+        return redirect(url_for('manager_dashboard'))  # Make sure this route exists
+
+    return "Invalid credentials. Please try again."
 
 # Run the app
 if __name__ == '__main__':
