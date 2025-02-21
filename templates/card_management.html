@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Card Management</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            background: linear-gradient(to bottom, #f5f6f6, #f6f8f9);
+        }
+
+        /* Overlay for better readability */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            z-index: -1;
+        }
+
+        /* Form Container */
+        .signup-container {
+            width: 90%;
+            max-width: 400px;
+            height: 600px; /* Set a fixed height */
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+
+
+        /* Header Styling */
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #4CAF50;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            align-self: flex-start;
+            margin: 10px 0 5px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        form button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: scale(1.03); /* Slight scale on hover */
+        }
+
+        form a {
+            color: black; /* Keep text white on the button */
+            text-decoration: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px; /* Space between options */
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between radio and label */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="signup-container">
+        <h1>Apply Card</h1>
+        <form method="POST" action="/card_management">
+            <input type="hidden" name="action" value="register">
+
+            <label for="card_typ">Card Type:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="Debit_Card" name="card_typ" value="Debit_Card" required>
+                        <label for="Debit_Card">Debit Card</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="Credit_Card" name="card_typ" value="Credit_Card" required>
+                        <label for="Credit_Card">Credit Card</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Prepaid_Card" name="card_typ" value="Prepaid_Card" required>
+                        <label for="Prepaid_Card">Prepaid Card</label>
+                    </div>
+                </div>
+
+            <label for="card_no">Card Number:</label>
+            <input type="number" id="card_no" name="card_no" placeholder="Enter Card Number" required>
+
+            <label for="holder_name">Card Holder Name:</label>
+            <input type="text" id="holder_name" name="holder_name" placeholder="Enter your Card Holder Name" required>
+            
+            <label for="issue_date">Card Issue Date:</label>
+            <input type="date" id="issue_date" name="issue_date" required>
+
+            <label for="expiry_date">Expiry Date:</label>
+            <input type="date" id="expiry_date" name="expiry_date" required>
+
+            <label for="cvv">CVV Number:</label>
+            <input type="number" id="cvv" name="cvv" placeholder="Enter your CVV Number" required>
+
+            <label for="id_card">ID Card Number:</label>
+            <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
+
+                <label for="international_trns">Allow International Transactions:</label>
+                <div class="radio-item">
+                    <input type="radio" id="Yes" name="international_trns" value="Yes" required>
+                    <label for="Yes">Yes</label>
+                    <input type="radio" id="No" name="international_trns" value="No" required>
+                    <label for="No">No</label>
+                </div>
+
+                <label for="daily_limit">Daily Withdrawal Limit:</label>
+                <input type="number" id="daily_limit" name="daily_limit" placeholder="Enter Daily Limit" required>
+
+                <label>
+                    <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+                </label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

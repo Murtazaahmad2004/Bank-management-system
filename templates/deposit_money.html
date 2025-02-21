@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Deposite Money Screen</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            background: linear-gradient(to bottom, #f5f6f6, #f6f8f9);
+        }
+
+        /* Overlay for better readability */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            z-index: -1;
+        }
+
+        /* Form Container */
+        .signup-container {
+            width: 90%;
+            max-width: 400px;
+            height: 600px; /* Set a fixed height */
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+
+
+        /* Header Styling */
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #4CAF50;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            align-self: flex-start;
+            margin: 10px 0 5px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        form button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: scale(1.03); /* Slight scale on hover */
+        }
+
+        form a {
+            color: black; /* Keep text white on the button */
+            text-decoration: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px; /* Space between options */
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between radio and label */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="signup-container">
+        <h1>Deposite Money</h1>
+        <form method="POST" action="/card_management">
+            <input type="hidden" name="action" value="register">
+
+            <label for="currency">Currency:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="PKR" name="currency" value="PKR" required>
+                        <label for="PKR">PKR</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="USD" name="currency" value="USD" required>
+                        <label for="USD">USD</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="EURO" name="currency" value="EURO" required>
+                        <label for="EURO">EURO</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="GBP" name="currency" value="GBP" required>
+                        <label for="GBP">GBP</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Others" name="currency" value="Others" required>
+                        <label for="Others">Others</label>
+                    </div>
+                </div>
+
+            <label for="branch_code">Branch Code:</label>
+            <input type="number" id="branch_code" name="branch_code" placeholder="Enter Branch Code" required>
+
+            <label for="acc_holder_name">Account Holder Name:</label>
+            <input type="text" id="acc_holder_name" name="acc_holder_name" placeholder="Enter Account Holder Name" required>
+            
+            <label for="acc_num">Account Number:</label>
+            <input type="number" id="acc_num" name="acc_num" placeholder="Enter Account Number" required>
+
+            <label for="tody_date">Date:</label>
+            <input type="date" id="tody_date" name="tody_date" required>
+
+            <label for="denom">Denominations:</label>
+            <select>
+                <option value="5000">5000</option>
+                <option value="1000">1000</option>
+                <option value="500">500</option>
+                <option value="100">100</option>
+                <option value="50">50</option>
+                <option value="20">20</option>
+                <option value="10">10</option>
+                <option value="coins">Coins</option>
+            </select>
+
+            <label for="count">Enter Numbers of Notes:</label>
+            <input type="number" id="count" name="count" placeholder="Enter Numbers of Notes" required>
+
+            <label for="total">Total Amount:</label>
+            <input type="number" id="total" name="total" placeholder="Enter Total Amount" required>
+
+            <label for="deposite_by">Depositer Name:</label>
+            <input type="text" id="deposite_by" name="deposite_by" placeholder="Enter Depositer Name" required>
+
+            <label for="receiver_by">Receiver Name:</label>
+            <input type="text" id="receiver_by" name="receiver_by" placeholder="Enter Receiver Name" required>
+
+            <label for="id_card">ID Card Number:</label>
+            <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
+
+            <label for="phn_no">Contact No:</label>
+            <input type="number" id="phn_no" name="phn_no" placeholder="Enter Contact No" required>
+
+                <label>
+                    <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+                </label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

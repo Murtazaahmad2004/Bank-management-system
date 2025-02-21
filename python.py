@@ -79,6 +79,21 @@ def open_digital_account():
 def blocked_accounts():
     return render_template('blocked_acc.html')
 
+# crad management
+@app.route('/card_management')
+def card_management():
+    return render_template('card_management.html')
+
+#chequebook 
+@app.route('/chequebook_management')
+def chequebook_management():
+    return render_template('chequebook_management.html')
+
+#Deposite
+@app.route('/deposit_money')
+def deposit_money():
+    return render_template('deposit_money.html')
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)

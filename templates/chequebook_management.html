@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Card Management</title>
+    <title>ChequeBook Management</title>
     <style>
         /* General Reset */
         * {
@@ -112,97 +112,104 @@
 <body>
     <div class="overlay"></div>
     <div class="signup-container">
-        <h1>Card Management</h1>
-        <form method="POST" action="/card_management">
+        <h1>Apply ChequeBook</h1>
+        <form method="POST" action="/chequebook_management">
             <input type="hidden" name="action" value="register">
 
-            <label for="card_typ">Card Type:</label>
+            <label for="holder_name">Account Holder Name:</label>
+            <input type="text" id="holder_name" name="holder_name" placeholder="Enter your Account Holder Name" required>
+
+            <label for="account_no">Account Number:</label>
+            <input type="number" id="account_no" name="account_no" placeholder="Enter your Account Number" required>
+
+            <label for="acctyp">Account Type:</label>
                 <div class="radio-group">
                     <div class="radio-item">
-                        <input type="radio" id="Debit_Card" name="card_typ" value="Debit_Card" required>
-                        <label for="Debit_Card">Debit Card</label>
+                        <input type="radio" id="saving" name="acctyp" value="saving" required>
+                        <label for="saving">Saving</label>
                     </div>
                     
                     <div class="radio-item">
-                        <input type="radio" id="Credit_Card" name="card_typ" value="Credit_Card" required>
-                        <label for="Credit_Card">Credit Card</label>
+                        <input type="radio" id="current" name="acctyp" value="current" required>
+                        <label for="current">Current</label>
                     </div>
 
-                    <div class="radio-item">
-                        <input type="radio" id="Prepaid_Card" name="card_typ" value="Prepaid_Card" required>
-                        <label for="Prepaid_Card">Prepaid Card</label>
-                    </div>
-                </div>
-
-            <label for="card_no">Card Number:</label>
-            <input type="number" id="card_no" name="card_no" placeholder="Enter Card Number" required>
-
-            <label for="holder_name">Card Holder Name:</label>
-            <input type="text" id="holder_name" name="holder_name" placeholder="Enter your Card Holder Name" required>
-            
-            <label for="expiry_date">Expiry Date:</label>
-            <input type="date" id="expiry_date" name="expiry_date" required>
-
-            <label for="issue_date">Card Issue Date:</label>
-            <input type="date" id="issue_date" name="issue_date" required>
-
-            <label for="cvv">CVV Number:</label>
-            <input type="number" id="cvv" name="cvv" placeholder="Enter your CVV Number" required>
-
-            <label for="id_card">ID Card Number:</label>
-            <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
-
-            <label for="card_stus">Account Type:</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="Active" name="card_stus" value="Active" required>
-                        <label for="Active">Active</label>
-                    </div>
-                    
-                    <div class="radio-item">
-                        <input type="radio" id="Blocked" name="card_stus" value="Blocked" required>
-                        <label for="Blocked">Blocked</label>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" id="Expired" name="card_stus" value="Expired" required>
-                        <label for="Expired">Expired</label>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" id="Suspended" name="card_stus" value="Suspended" required>
-                        <label for="Suspended">Suspended</label>
-                    </div>
-                </div>
-
-                <label for="acctporp">Account Purpose:</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="personal" name="acctyp" value="personal" required>
-                        <label for="personal">Personal</label>
-                    </div>
-                    
                     <div class="radio-item">
                         <input type="radio" id="business" name="acctyp" value="business" required>
                         <label for="business">Business</label>
                     </div>
+                </div>
+
+                <label for="branch_name">Branch Name:</label>
+                <input type="text" id="branch_name" name="branch_name" placeholder="Enter Branch Name" required>
+
+            <label for="book_pages">ChequeBook Leaves:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="10" name="book_pages" value="10" required>
+                        <label for="10">10</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="30" name="book_pages" value="30" required>
+                        <label for="30">30</label>
+                    </div>
 
                     <div class="radio-item">
-                        <input type="radio" id="investment" name="acctyp" value="investment" required>
-                        <label for="investment">Investment</label>
+                        <input type="radio" id="50" name="book_pages" value="50" required>
+                        <label for="50">50</label>
                     </div>
                 </div>
 
-                <label for="international_trns">Allow International Transactions:</label>
-                <div class="radio-item">
-                    <input type="radio" id="Yes" name="international_trns" value="Yes" required>
-                    <label for="Yes">Yes</label>
-                    <input type="radio" id="No" name="international_trns" value="No" required>
-                    <label for="No">No</label>
+                <label for="chequebook_typ">ChequeBook Type:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="Personal" name="chequebook_typ" value="Personal" required>
+                        <label for="Personal">Personal</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="Business" name="chequebook_typ" value="Business" required>
+                        <label for="Business">Business</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Corporate" name="chequebook_typ" value="Corporate" required>
+                        <label for="Corporate">Corporate</label>
+                    </div>
                 </div>
 
-                <label for="daily_limit">Daily Withdrawal Limit:</label>
-                <input type="number" id="daily_limit" name="daily_limit" placeholder="Enter Daily Limit" required>
+                <label for="delivery_mode">ChequeBook Delivery Mode:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="Branch_Pickup" name="delivery_mode" value="Branch_Pickup" required>
+                        <label for="Branch_Pickup">Branch Pickup</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="Home_Delivery" name="delivery_mode" value="Home_Delivery" required>
+                        <label for="Home_Delivery">Home Delivery</label>
+                    </div>
+                </div>
+
+                <label for="process_time">Urgent Processing Rrequired?:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="Yes" name="process_time" value="Yes" required>
+                        <label for="Yes">Yes</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="No" name="process_time" value="No" required>
+                        <label for="No">No</label>
+                    </div>
+                </div>
+
+            <label for="contact_info">Contact Information:</label>
+            <select>
+                <option value="register_no">Register Mobile Number</option>
+                <option value="register_mail">Register Email</option>
+            </select>
 
                 <label>
                     <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
