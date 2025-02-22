@@ -91,7 +91,17 @@ def deposit_money():
 # Manager dashboard
 @app.route('/manager_dashboard')
 def manager_dashboard():
-    return render_template('admin_dashboard/manager_dashboard.html')  # Ensure this template exists
+    return render_template('admin_dashboard/manager_dashboard.html')
+
+# user management
+@app.route('/user_management')
+def user_management():
+    return render_template('/admin_dashboard/user_management.html')
+
+# add user
+@app.route('/add_user')
+def add_user():
+    return render_template('/admin_dashboard/add_user.html')
 
 # Login Authentication
 @app.route('/login_user_employee_auth', methods=['POST'])

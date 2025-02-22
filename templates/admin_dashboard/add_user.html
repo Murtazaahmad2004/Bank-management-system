@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add New User</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            background: linear-gradient(to bottom, #f5f6f6, #f6f8f9);
+        }
+
+        /* Overlay for better readability */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
+            z-index: -1;
+        }
+
+        /* Form Container */
+        .signup-container {
+            width: 90%;
+            max-width: 800px;
+            height: 600px; /* Set a fixed height */
+            padding: 30px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow-y: auto; /* Enable scrolling if content overflows */
+        }
+
+
+        /* Header Styling */
+        h1 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #4CAF50;
+        }
+
+        /* Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            align-self: flex-start;
+            margin: 10px 0 5px;
+            font-size: 1em;
+            color: #555;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        form button {
+            width: 50%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #45a049;
+            transform: scale(1.03); /* Slight scale on hover */
+        }
+
+        form a {
+            color: black; /* Keep text white on the button */
+            text-decoration: none;
+        }
+        .radio-group {
+            display: flex;
+            gap: 15px; /* Space between options */
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between radio and label */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="signup-container">
+        <h1>Add New User</h1>
+        <form action="/add_user" method="POST">
+            
+            <input type="hidden" name="action" value="login">
+
+            <label for="user_id">User ID:</label>
+            <input type="number" name="user_id" placeholder="Enter User ID" required>
+
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" placeholder="Enter your First Name" required>
+
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" placeholder="Enter your Last Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="Enter your Email" required>
+
+            <label for="phone_no">Phone No:</label>
+            <input type="number" name="phone_no" placeholder="Enter your Phone No" required>
+
+            <label for="d_o_b">Date of Birth:</label>
+            <input type="date" name="d_o_b" placeholder="Enter your Date of Birth" required>
+
+            <label for="designation">User Designation:</label>
+                <div class="radio-group">
+
+                    <div class="radio-item">
+                        <input type="radio" id="Branch_Operation" name="designation" value="Branch_Operation" required>
+                        <label for="Branch_Operation">Branch Operation</label>
+                    </div>
+                    
+                    <div class="radio-item">
+                        <input type="radio" id="Loan_Officer" name="designation" value="Loan_Officer" required>
+                        <label for="Loan_Officer">Loan Officer</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Customer_Service_Manager" name="designation" value="Customer_Service_Manager" required>
+                        <label for="Customer_Service_Manager">Customer Service Manager</label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Teller_(Cashier) " name="designation" value="Teller_(Cashier) " required>
+                        <label for="Teller_(Cashier) ">Teller (Cashier) </label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Forex_Officer " name="designation" value="Forex_Officer " required>
+                        <label for="Forex_Officer ">Forex Officer </label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="IT_Manager " name="designation" value="IT_Manager " required>
+                        <label for="IT_Manager ">IT Manager </label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="Cyber_Security_Officer " name="designation" value="Cyber_Security_Officer " required>
+                        <label for="Cyber_Security_Officer ">Cyber Security Officer </label>
+                    </div>
+
+                    <div class="radio-item">
+                        <input type="radio" id="DBA" name="designation" value="DBA" required>
+                        <label for="DBA">Database Administrator (DBA) </label>
+                    </div>
+                    
+                </div>
+
+            <label for="Salary">Salary Per Month:</label>
+            <input type="Salary" name="Salary" placeholder="Enter your Salary" required>
+
+            <label for="d_o_join">Date of Joining:</label>
+            <input type="date" name="d_o_join" placeholder="Enter your Date of Joining" required>
+
+            <label>
+                <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+            </label>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
