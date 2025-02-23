@@ -1,7 +1,5 @@
-import random
-import string
-import datetime
 import MySQLdb
+from flask import Flask, render_template, request, jsonify
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_cors import CORS
 
@@ -102,6 +100,45 @@ def user_management():
 @app.route('/add_user')
 def add_user():
     return render_template('/admin_dashboard/add_user.html')
+
+# Set Transaction Limits
+@app.route('/set_transaction_limits')
+def set_transaction_limits():
+    return render_template('/admin_dashboard/set_transaction_limits.html')
+
+#loan management
+@app.route('/loan_management')
+def loan_management():
+    return render_template('/admin_dashboard/loan_management.html')
+
+# loan application
+@app.route('/loan_application')
+def loan_application():
+    return render_template('/admin_dashboard/loan_application.html')
+
+# loan repay
+@app.route('/loan_repay')
+def loan_repay():
+    return render_template('/admin_dashboard/loan_repay.html')
+
+# report
+@app.route('/reports')
+def report():
+    return render_template('/admin_dashboard/reports.html')
+
+# balance
+@app.route('/balance')
+def balance():
+    return render_template('/admin_dashboard/balance.html')
+
+# Route to Get Total Balance from Deposit Table
+@app.route('/get_balance', methods=['GET'])
+def get_balance():
+    cursor = db.cursor()
+    cursor.execute("SELECT SUM(amount) AS total_balance FROM deposit")  # Adjust table name if needed
+    result = cursor.fetchone()
+    total_balance = result['total_balance'] if result['total_balance'] else 0  # Handle NULL case
+    return jsonify({'balance': total_balance})
 
 # Login Authentication
 @app.route('/login_user_employee_auth', methods=['POST'])

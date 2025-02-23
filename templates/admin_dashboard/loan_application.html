@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blocked Account</title>
+    <title>Loan Application</title>
     <style>
         /* General Reset */
         * {
@@ -112,12 +112,12 @@
 <body>
     <div class="overlay"></div>
     <div class="signup-container">
-        <h1>Blocked Account</h1>
-        <form method="POST" action="/blocked_acc">
+        <h1>Loan Application</h1>
+        <form method="POST" action="/loan_application">
             <input type="hidden" name="action" value="register">
 
-            <label for="branchcode">Branch Code:</label>
-            <input type="number" id="branchcode" name="branchcode" placeholder="Enter Branch Code" required>
+            <label for="cust_id">Customer ID:</label>
+            <input type="number" id="cust_id" name="cust_id" placeholder="Enter Customer ID" required>
 
             <label for="acctno">Account Number:</label>
             <input type="number" id="acctno" name="acctno" placeholder="Enter Account Number" required>
@@ -134,46 +134,41 @@
             <label for="id_card">ID Card Number:</label>
             <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
 
-            <label for="acctyp">Account Type:</label>
+            <label for="loan_typ">Loan Type:</label>
                 <div class="radio-group">
                     <div class="radio-item">
-                        <input type="radio" id="saving" name="acctyp" value="saving" required>
-                        <label for="saving">Saving</label>
+                        <input type="radio" id="Home" name="loan_typ" value="Home" required>
+                        <label for="Home">Home</label>
                     </div>
                     
                     <div class="radio-item">
-                        <input type="radio" id="current" name="acctyp" value="current" required>
-                        <label for="current">Current</label>
+                        <input type="radio" id="Personal" name="loan_typ" value="Personal" required>
+                        <label for="Personal">Personal</label>
                     </div>
 
                     <div class="radio-item">
-                        <input type="radio" id="business" name="acctyp" value="business" required>
-                        <label for="business">Business</label>
+                        <input type="radio" id="Auto" name="loan_typ" value="Auto" required>
+                        <label for="Auto">Auto</label>
                     </div>
 
                     <div class="radio-item">
-                        <input type="radio" id="joint" name="acctyp" value="joint" required>
-                        <label for="joint">Joint</label>
+                        <input type="radio" id="Business" name="loan_typ" value="Business" required>
+                        <label for="Business">Business</label>
                     </div>
                 </div>
 
-                <label for="acctporp">Account Purpose:</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="personal" name="acctyp" value="personal" required>
-                        <label for="personal">Personal</label>
-                    </div>
-                    
-                    <div class="radio-item">
-                        <input type="radio" id="business" name="acctyp" value="business" required>
-                        <label for="business">Business</label>
-                    </div>
+                <label for="amont_req">Amount Requested:</label>
+                <input type="number" id="amont_req" name="amont_req" placeholder="Enter Requested Amount" required>
 
-                    <div class="radio-item">
-                        <input type="radio" id="investment" name="acctyp" value="investment" required>
-                        <label for="investment">Investment</label>
-                    </div>
-                </div>
+                <label for="application_date">Application Date:</label>
+                <input type="date" id="application_date" name="application_date" required>
+
+                <label for="application_stats">Application Status:</label>
+                <select id="application_stats" name="application_stats" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                    <option value="Rejected">Rejected</option>
+                </select>
 
                 <label>
                     <input type="checkbox" name="term_cond" value="Yes">Term & Conditions

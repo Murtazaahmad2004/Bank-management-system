@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Show Balance</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <h2>Bank Balance</h2>
+    <button id="showBalanceBtn">Show Balance</button>
+    <p id="balanceDisplay">Balance: </p>
+
+    <script>
+        $(document).ready(function() {
+            $("#showBalanceBtn").click(function() {
+                $.ajax({
+                    url: "/get_balance",
+                    type: "GET",
+                    success: function(response) {
+                        $("#balanceDisplay").text("Balance: Rs. " + response.balance);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

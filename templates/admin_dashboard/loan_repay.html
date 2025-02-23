@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blocked Account</title>
+    <title>Loan Application</title>
     <style>
         /* General Reset */
         * {
@@ -112,12 +112,12 @@
 <body>
     <div class="overlay"></div>
     <div class="signup-container">
-        <h1>Blocked Account</h1>
-        <form method="POST" action="/blocked_acc">
+        <h1>Loan Application</h1>
+        <form method="POST" action="/loan_application">
             <input type="hidden" name="action" value="register">
 
-            <label for="branchcode">Branch Code:</label>
-            <input type="number" id="branchcode" name="branchcode" placeholder="Enter Branch Code" required>
+            <label for="cust_id">Customer ID:</label>
+            <input type="number" id="cust_id" name="cust_id" placeholder="Enter Customer ID" required>
 
             <label for="acctno">Account Number:</label>
             <input type="number" id="acctno" name="acctno" placeholder="Enter Account Number" required>
@@ -125,59 +125,21 @@
             <label for="full_name">Full Name:</label>
             <input type="text" id="full_name" name="full_name" placeholder="Enter your Full Name" required>
             
-            <label for="emial">Email:</label>
-            <input type="text" id="emial" name="emial" placeholder="Enter your Email" required>
-
             <label for="phone_no">Phone Number:</label>
             <input type="number" id="phone_no" name="phone_no" placeholder="Enter your Phone Number" required>
 
             <label for="id_card">ID Card Number:</label>
             <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
 
-            <label for="acctyp">Account Type:</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="saving" name="acctyp" value="saving" required>
-                        <label for="saving">Saving</label>
-                    </div>
-                    
-                    <div class="radio-item">
-                        <input type="radio" id="current" name="acctyp" value="current" required>
-                        <label for="current">Current</label>
-                    </div>
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" required>
 
-                    <div class="radio-item">
-                        <input type="radio" id="business" name="acctyp" value="business" required>
-                        <label for="business">Business</label>
-                    </div>
+            <label for="charges">Charges After Due Date:</label>
+            <input type="number" id="charges" name="charges" placeholder="Enter Charges Amount" required>
 
-                    <div class="radio-item">
-                        <input type="radio" id="joint" name="acctyp" value="joint" required>
-                        <label for="joint">Joint</label>
-                    </div>
-                </div>
-
-                <label for="acctporp">Account Purpose:</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="personal" name="acctyp" value="personal" required>
-                        <label for="personal">Personal</label>
-                    </div>
-                    
-                    <div class="radio-item">
-                        <input type="radio" id="business" name="acctyp" value="business" required>
-                        <label for="business">Business</label>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" id="investment" name="acctyp" value="investment" required>
-                        <label for="investment">Investment</label>
-                    </div>
-                </div>
-
-                <label>
-                    <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
-                </label>
+            <label>
+                <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+            </label>
 
             <button type="submit">Submit</button>
         </form>
