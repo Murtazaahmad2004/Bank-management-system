@@ -116,6 +116,9 @@
         <form method="POST" action="/card_management">
             <input type="hidden" name="action" value="register">
 
+            <label for="cus_id">Customer ID</label>
+            <input type="number" id="cus_id" name="cus_id" placeholder="Enter Customer ID" required>
+
             <label for="currency">Currency:</label>
                 <div class="radio-group">
                     <div class="radio-item">
@@ -144,9 +147,9 @@
                     </div>
                 </div>
 
-            <label for="branch_code">Branch Code:</label>
-            <input type="number" id="branch_code" name="branch_code" placeholder="Enter Branch Code" required>
-
+            <label for="branchcode">Branch Code:</label>
+            <input type="number" id="branchcode" name="branchcode" value="0512" readonly>
+            
             <label for="acc_holder_name">Account Holder Name:</label>
             <input type="text" id="acc_holder_name" name="acc_holder_name" placeholder="Enter Account Holder Name" required>
             

@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Sign Up Screen</title>
+    <title>Authentication Screen</title>
     <style>
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Body Styling */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh; /* Full viewport height */
-            background: linear-gradient(to bottom, #f5f6f6, #f6f8f9);
+            flex-direction: row;
+            height: 100vh;
+            background: linear-gradient(to bottom, #f0f4f8, #f2f6f7);
         }
 
-        /* Overlay for better readability */
-        .overlay {
-            position: absolute;
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark overlay */
-            z-index: -1;
+            height: 60px;
+            z-index: 100;
         }
 
-        /* Form Container */
-        .signup-container {
+        .navbar h1 {
+            color: white;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
             width: 90%;
-            max-width: 400px;
-            height: 600px; /* Set a fixed height */
+            max-width: 450px;
             padding: 30px;
             border-radius: 10px;
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            overflow-y: auto; /* Enable scrolling if content overflows */
+            max-height: 80vh; /* Set max height */
+            overflow-y: auto; /* Enable vertical scrolling */
         }
 
-
-        /* Header Styling */
-        h1 {
+        .login-container h2 {
             margin-bottom: 20px;
             font-size: 1.8em;
-            color: #4CAF50;
+            color: black;
         }
 
-        /* Form Styling */
         form {
             display: flex;
             flex-direction: column;
@@ -66,7 +78,7 @@
             color: #555;
         }
 
-        form input, form select {
+        form input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -81,7 +93,7 @@
             border: none;
             border-radius: 5px;
             background-color: #4CAF50;
-            color: white;
+            color: #fff;
             font-size: 1em;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -89,75 +101,108 @@
 
         form button:hover {
             background-color: #45a049;
-            transform: scale(1.03); /* Slight scale on hover */
+            transform: scale(1.03);
         }
 
         form a {
-            color: black; /* Keep text white on the button */
+            margin-top: 15px;
             text-decoration: none;
+            color: #007BFF;
+            font-size: 0.9em;
+            transition: color 0.3s ease;
         }
+
+        form a:hover {
+            color: #0056b3;
+        }
+
         .radio-group {
             display: flex;
-            gap: 15px; /* Space between options */
+            gap: 15px;
         }
 
         .radio-item {
             display: flex;
             align-items: center;
-            gap: 5px; /* Space between radio and label */
+            gap: 5px;
         }
 
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="signup-container">
-        <h1>Sign Up Screen</h1>
-        <form method="POST" action="/register">
-            <input type="hidden" name="action" value="register">
 
-            <label for="user_id">User ID:</label>
-            <input type="number" id="user_id" name="user_id" placeholder="Enter User ID" required>
-            
-            <label for="first_name">First Name:</label>
-            <input type="text" id="first_name" name="first_name" placeholder="Enter your First Name" required>
-
-            <label for="last_name">Last Name:</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Enter your Last Name" required>
-            
-            <label for="emial">Email:</label>
-            <input type="text" id="emial" name="emial" placeholder="Enter your Email" required>
-
-            <label for="phone_no">Phone Number:</label>
-            <input type="number" id="phone_no" name="phone_no" placeholder="Enter your Phone Number" required>
-
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" placeholder="Enter your Address" required>
-
-            <label for="d_o_b">Date of Birth:</label>
-            <input type="text" id="d_o_b" name="d_o_b" placeholder="Enter your Date of Birth" required>
-
-            <label for="gender">Gender:</label>
-                <div class="radio-group">
-                    <div class="radio-item">
-                        <input type="radio" id="male" name="gender" value="male" required>
-                        <label for="male">Male</label>
-                    </div>
-                    
-                    <div class="radio-item">
-                        <input type="radio" id="female" name="gender" value="female" required>
-                        <label for="female">Female</label>
-                    </div>
-                </div>
-
-            <label for="password">Password:</label>
-            <input type="text" id="password" name="password" placeholder="Enter your Password" required>
-
-            <label for="confirmpass">Confirm Password:</label>
-            <input type="text" id="confirmpass" name="confirmpass" placeholder="Enter your Confirm Password" required>
-
-            <button type="submit">Sign UP</button>
-        </form>
+    <!-- 🔹 Navbar -->
+    <div class="navbar">
+        <marquee><h1>United Bank Limited</h1></marquee>
     </div>
+
+    <!-- 🔹 Sign-Up Form Section -->
+    <div class="content">
+        <div class="login-container">
+            <h2>United Bank Limited</h2>
+                <h1>Sign Up</h1>
+                <form method="POST" action="/register">
+                    <input type="hidden" name="action" value="register">
+            
+                    <label for="user_id">User ID:</label>
+                    <input type="number" id="user_id" name="user_id" value="{{ user_id }}" readonly required>
+                    
+                    <label for="first_name">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Enter First Name" required>
+            
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" required>
+                    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+            
+                    <label for="phone_no">Phone Number:</label>
+                    <input type="tel" id="phone_no" name="phone_no" placeholder="Enter Phone Number" required>
+            
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" placeholder="Enter Address" required>
+            
+                    <label for="d_o_b">Date of Birth:</label>
+                    <input type="date" id="d_o_b" name="d_o_b" required>
+            
+                    <label for="gender">Gender:</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male">Male</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="female" name="gender" value="female" required>
+                            <label for="female">Female</label>
+                        </div>
+                    </div>
+            
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            
+                    <label for="confirmpass">Confirm Password:</label>
+                    <input type="password" id="confirmpass" name="confirmpass" placeholder="Confirm Password" required>
+            
+                    <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 🔹 JavaScript for Password Validation -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const password = document.getElementById("password");
+            const confirmPass = document.getElementById("confirmpass");
+
+            confirmPass.addEventListener("input", function () {
+                if (password.value !== confirmPass.value) {
+                    confirmPass.setCustomValidity("Passwords do not match!");
+                } else {
+                    confirmPass.setCustomValidity("");
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

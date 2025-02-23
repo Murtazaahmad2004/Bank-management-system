@@ -116,11 +116,14 @@
         <form method="POST" action="/open_digital_account">
             <input type="hidden" name="action" value="register">
 
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" id="customer_id" name="customer_id" value="{{customer_id}}" readonly required>
+
             <label for="branchcode">Branch Code:</label>
-            <input type="text" id="branchcode" name="branchcode" placeholder="Enter Branch Code" required>
+            <input type="number" id="branchcode" name="branchcode" value="0512" readonly>
 
             <label for="acctno">Account Number:</label>
-            <input type="number" id="acctno" name="acctno" placeholder="Enter Account Number" required>
+            <input type="number" id="acctno" name="acctno" value="{{ acct_no }}" readonly required>
 
             <label for="full_name">Full Name:</label>
             <input type="text" id="full_name" name="full_name" placeholder="Enter your Full Name" required>

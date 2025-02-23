@@ -116,6 +116,9 @@
         <form method="POST" action="/chequebook_management">
             <input type="hidden" name="action" value="register">
 
+            <label for="customer_id">Customer ID:</label>
+            <input type="text" id="customer_id" name="customer_id" value="{{customer_id}}" readonly required>
+            
             <label for="holder_name">Account Holder Name:</label>
             <input type="text" id="holder_name" name="holder_name" placeholder="Enter your Account Holder Name" required>
 
