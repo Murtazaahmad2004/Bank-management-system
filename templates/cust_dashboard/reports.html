@@ -47,7 +47,7 @@
 
         /* Header Styling */
         h1 {
-            margin-top: 6em;
+            margin-top: 3em;
             font-size: 1.8em;
             color: #4CAF50;
         }
@@ -106,6 +106,13 @@
         <form method="POST" action="/reports">
 
             <input type="hidden" name="action" value="register">
+
+            <label for="c_id">Customer_ID:</label>
+            <input type="number" id="c_id" name="c_id" placeholder="Enter Customer ID" required>
+            
+            <label for="c_name">Customer Name:</label>
+            <input type="text" id="c_name" name="c_name" placeholder="Enter Customer Name" required>
+
             <label for="remarks">Report and FeedBack of Our Services:</label>
             <textarea id="remarks" name="remarks"></textarea>
 

@@ -48,17 +48,6 @@ class Customer(User):
 def home():
     return render_template('login_user_employee_auth.html')
 
-# Signup Page
-@app.route('/signup')
-def signup():
-    def generate_random_id(length=5):
-        """Generate a random numeric ID of specified length."""
-        return ''.join(random.choices(string.digits, k=length))
-
-# For GET request, pre-generate random IDs
-    user_id = generate_random_id()
-    return render_template('signup.html', user_id=user_id)
-
 # Logout 
 @app.route('/login_user_employee_auth')
 def logout():
@@ -69,53 +58,10 @@ def logout():
 def account_manage_entity():
     return render_template('/emp_dashboard/account_manage_entity.html')
 
-#open acc
-@app.route('/emp_dashboard/open_digital_account')
-def open_digital_account():
-    def generate_random_id(length=5):
-        return ''.join(random.choices(string.digits, k=length))
-
-    def generate_random_acct_no(length=9):
-        return ''.join(random.choices(string.digits, k=length))
-
-    # Generate the random IDs
-    customer_id = generate_random_id()
-    acct_no = generate_random_acct_no()
-
-    return render_template('emp_dashboard/open_digital_account.html', customer_id=customer_id, acct_no=acct_no)
-
 # blocked acc
 @app.route('/emp_dashboard/blocked_acc')
 def blocked_accounts():
     return render_template('/emp_dashboard/blocked_acc.html')
-
-# card management
-@app.route('/emp_dashboard/card_management')
-def card_management():
-    def generate_random_card_no(length=16):
-        return ''.join(random.choices(string.digits, k=length))
-
-    def generate_random_cvv(length=3):
-        return ''.join(random.choices(string.digits, k=length))
-    
-    def generate_random_id(length=5):
-        return ''.join(random.choices(string.digits, k=length))
-
-    # Generate the random IDs
-    card_no = generate_random_card_no()
-    cvv = generate_random_cvv()
-    custm_id = generate_random_id()
-
-    return render_template('emp_dashboard/card_management.html', card_no=card_no, cvv=cvv, custm_id=custm_id)
-
-#chequebook 
-@app.route('/emp_dashboard/chequebook_management')
-def chequebook_management():
-        def generate_random_id(length=5):
-            return ''.join(random.choices(string.digits, k=length))
-        
-        customer_id = generate_random_id()
-        return render_template('emp_dashboard/chequebook_management.html', customer_id=customer_id)
 
 #Deposite
 @app.route('/emp_dashboard/deposit_money')
@@ -132,41 +78,10 @@ def manager_dashboard():
 def user_management():
     return render_template('admin_dashboard/user_management.html')
 
-# add user
-@app.route('/add_user')
-def add_user():
-    def generate_random_id(length=5):
-        return ''.join(random.choices(string.digits, k=length))
-    
-    # Generate the random IDs
-    user_id = generate_random_id()
-
-    return render_template('admin_dashboard/add_user.html', user_id=user_id)
-
-# Set Transaction Limits
-@app.route('/set_transaction_limits')
-def set_transaction_limits():
-    def generate_random_id(length=5):
-        return ''.join(random.choices(string.digits, k=length))
-    
-    # Generate the random IDs
-    user_id = generate_random_id()
-    return render_template('emp_dashboard/set_transaction_limits.html', user_id=user_id)
-
 #loan management
 @app.route('/loan_management')
 def loan_management():
     return render_template('/admin_dashboard/loan_management.html')
-
-# loan application
-@app.route('/loan_application')
-def loan_application():
-    def generate_random_id(length=5):
-        return ''.join(random.choices(string.digits, k=length))
-    
-    # Generate the random IDs
-    cust_id = generate_random_id()
-    return render_template('admin_dashboard/loan_application.html', cust_id=cust_id)
 
 # loan repay
 @app.route('/loan_repay')
@@ -208,6 +123,141 @@ def loan_detail():
 def card_mang():
     return render_template('/cust_dashboard/card_mang.html')
 
+# Signup Page
+@app.route('/signup')
+def signup():
+    def generate_random_id(length=5):
+        """Generate a random numeric ID of specified length."""
+        return ''.join(random.choices(string.digits, k=length))
+
+# For GET request, pre-generate random IDs
+    user_id = generate_random_id()
+    return render_template('signup.html', user_id=user_id)
+
+# open acc
+def generate_random_id(length=5):
+    return ''.join(random.choices(string.digits, k=length))
+
+def generate_random_acct_no(length=9):
+    return ''.join(random.choices(string.digits, k=length))
+
+@app.route('/emp_dashboard/open_digital_account')
+def open_digital_account():
+    if request.method == 'POST':
+        customer_id = request.form.get('customer_id')
+        branch_code = request.form.get('branch_code')
+        account_no = request.form.get('acctno')
+        full_name = request.form.get('full_name')
+        email = request.form.get('email')
+        phone = request.form.get('phone_no')
+        address = request.form.get('address')
+        d_o_b = request.form.get('d_o_b')
+        marital_sts = request.form.get('marital_sts')
+        nationality = request.form.get('nationality')
+        gender = request.form.get('gender')
+        id_card = request.form.get('id_card')
+        occupation = request.form.get('occupation')
+        source_income = request.form.get('soin')
+        monthly_income = request.form.get('monthlyincom')
+        account_type = request.form.get('acctyp')
+        init_dep_amo = request.form.get('init_dep_amo')
+        account_purp = request.form.get('acctporp')
+        debit_req = request.form.get('cardreq')
+        online_banking = request.form.get('online_banking')
+        cheque_book = request.form.get('chequebook_req')
+        sms_alert = request.form.get('sms_alert')
+        term_cond = request.form.get('term_cond')
+
+# validate the fields
+        if not all([customer_id, branch_code, account_no, full_name, email, phone, address, d_o_b, marital_sts, nationality, gender, id_card, occupation, source_income, monthly_income, account_type, init_dep_amo, account_purp, debit_req, online_banking, cheque_book, sms_alert, term_cond]):
+            error = "All fields are required. Please fill them."
+        return render_template('emp_dashboard/open_digital_account.html', error=error)
+    
+    cursor = db.cursor()
+    try:
+        cursor.execute("SELECT COUNT(*) FROM open_digital_ acc WHERE Customer_ID = %s", (customer_id,))
+        if cursor.fetchone()[0] > 0:
+            error = "Customer ID already exists. Please try again."
+            return render_template('emp_dashboard/open_digital_account.html', error=error)
+    
+        cursor.execute("""
+            INSERT INTO open_digital_acc (Customer_ID, Branch_Code, Account_Number, Full_Name, Email, Phone_Number, Address, Date_of_Birth, Marital_Status, Nationality, Gender, ID_Card_Number, Occupation, Source_of_Income, Monthly_Income, Account_Type, Initial_Deposit_Amount, Account_Purpose, Debit_Card_Required, Online_Banking_Access, ChequeBook_Request, SMS_Banking_Alerts, Term_and_Conditions)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """, (customer_id, branch_code, account_no, full_name, email, phone, address, d_o_b, marital_sts, nationality, gender, id_card, occupation, source_income, monthly_income, account_type, init_dep_amo, account_purp, debit_req, online_banking, cheque_book, sms_alert, term_cond))
+        db.commit()
+        return redirect(url_for('account_manage_entity', success=True))
+
+    except Exception as e:
+        db.rollback()
+        error = f"Failed to insert data. Error: {str(e)}"
+        return render_template('emp_dashboard/open_digital_account.html', error=error)
+ 
+    finally:
+        cursor.close()
+   
+        # Generate the random IDs
+        customer_id = generate_random_id()
+        acct_no = generate_random_acct_no()
+        return render_template('emp_dashboard/open_digital_account.html', customer_id=customer_id, acct_no=acct_no)
+
+# card management
+@app.route('/emp_dashboard/card_management')
+def card_management():
+    def generate_random_card_no(length=16):
+        return ''.join(random.choices(string.digits, k=length))
+
+    def generate_random_cvv(length=3):
+        return ''.join(random.choices(string.digits, k=length))
+    
+    def generate_random_id(length=5):
+        return ''.join(random.choices(string.digits, k=length))
+
+    # Generate the random IDs
+    card_no = generate_random_card_no()
+    cvv = generate_random_cvv()
+    custm_id = generate_random_id()
+
+    return render_template('emp_dashboard/card_management.html', card_no=card_no, cvv=cvv, custm_id=custm_id)
+
+#chequebook 
+@app.route('/emp_dashboard/chequebook_management')
+def chequebook_management():
+    def generate_random_id(length=5):
+        return ''.join(random.choices(string.digits, k=length))
+    customer_id = generate_random_id()
+    return render_template('emp_dashboard/chequebook_management.html', customer_id=customer_id)
+
+# add user
+@app.route('/add_user')
+def add_user():
+    def generate_random_id(length=5):
+        return ''.join(random.choices(string.digits, k=length))
+    
+    # Generate the random IDs
+    user_id = generate_random_id()
+
+    return render_template('admin_dashboard/add_user.html', user_id=user_id)
+
+# Set Transaction Limits
+@app.route('/set_transaction_limits')
+def set_transaction_limits():
+    def generate_random_id(length=5):
+        return ''.join(random.choices(string.digits, k=length))
+    
+    # Generate the random IDs
+    user_id = generate_random_id()
+    return render_template('emp_dashboard/set_transaction_limits.html', user_id=user_id)
+
+# loan application
+@app.route('/loan_application')
+def loan_application():
+    def generate_random_id(length=5):
+        return ''.join(random.choices(string.digits, k=length))
+    
+    # Generate the random IDs
+    cust_id = generate_random_id()
+    return render_template('admin_dashboard/loan_application.html', cust_id=cust_id)
+
 # Route to Get Total Balance from Deposit Table
 @app.route('/get_balance', methods=['GET'])
 def get_balance():
@@ -242,102 +292,6 @@ def login_user_employee_auth():
         return redirect(url_for('customer_dashboard'))  # Make sure this route exists
     
     return "Invalid credentials. Please try again."
-
-# # fetch customer data
-# @app.route('/customer_profile_data', methods=['GET', 'POST'])
-# def customer_profile_data():
-#     if request.method == 'POST':
-#         # Get the patient ID from the form
-#         phone_no = request.form.get('phone_no')
-
-#         # Validate the input
-#         if not phone_no:
-#             return render_template('customer_profile_data.html', error="Phone No is required!")
-
-#         # Fetch the customer_data from the database
-#         cursor = db.cursor()
-#         try:
-#             cursor.execute("""
-#                 SELECT * FROM customer_profile WHERE phone_no = %s
-#             """, (phone_no,))
-#             customer_data = cursor.fetchall()  # Use fetchall to get all records
-
-#             if customer_data:
-#                 customer_list = []
-#                 for data in customer_data:
-#                     customer_dict = {
-#                         'Customer ID': data[1],
-#                         'First_Name': data[2],
-#                         'Last_Name': data[3],
-#                         'Email': data[4],
-#                         'Phone_No': data[5],
-#                         'Date_of_Birth': data[6],
-#                         'Account_Type': data[7],
-#                     }
-#                     customer_list.append(customer_dict)
-#                 return render_template('customer_profile_data.html', customer_list=customer_list)
-
-#             else:
-#                 return render_template('customer_profile_data.html', error="No customer record found for this Phonr No.")
-
-#         except Exception as e:
-#             error = f"Failed to fetch Customer Data. Error: {str(e)}"
-#             print(error)  # Log the error for debugging
-#             return render_template('customer_profile_data.html', error=error)
-
-#         finally:
-#             cursor.close()
-
-#     # Render the form for GET request
-#     return render_template('customer_profile_data.html')
-
-# fetch account data
-# @app.route('/account_info_data', methods=['GET', 'POST'])
-# def account_info_data():
-#     if request.method == 'POST':
-#         # Get the patient ID from the form
-#         account_no = request.form.get('account_no')
-
-#         # Validate the input
-#         if not account_no:
-#             return render_template('account_info_data.html', error="Account No is required!")
-
-#         # Fetch the account_data from the database
-#         cursor = db.cursor()
-#         try:
-#             cursor.execute("""
-#                 SELECT * FROM account_info_data WHERE account_no = %s
-#             """, (account_no,))
-#             account_data = cursor.fetchall()  # Use fetchall to get all records
-
-#             if account_data:
-#                 account_list = []
-#                 for data in account_data:
-#                     account_dict = {
-#                         'Customer ID': data[1],
-#                         'First_Name': data[2],
-#                         'Last_Name': data[3],
-#                         'Email': data[4],
-#                         'Phone_No': data[5],
-#                         'Date_of_Birth': data[6],
-#                         'Account_Type': data[7],
-#                     }
-#                     account_list.append(account_dict)
-#                 return render_template('account_info_data.html', account_list=account_list)
-
-#             else:
-#                 return render_template('account_info_data.html', error="No customer record found for this Phonr No.")
-
-#         except Exception as e:
-#             error = f"Failed to fetch Account Data. Error: {str(e)}"
-#             print(error)  # Log the error for debugging
-#             return render_template('account_info_data.html', error=error)
-
-#         finally:
-#             cursor.close()
-
-#     # Render the form for GET request
-#     return render_template('account_info_data.html')
 
 # Run the app
 if __name__ == '__main__':
