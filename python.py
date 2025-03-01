@@ -1,7 +1,7 @@
 import random
 import string
 import MySQLdb
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, flash, render_template, request, jsonify
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_cors import CORS
 
@@ -141,64 +141,80 @@ def generate_random_id(length=5):
 def generate_random_acct_no(length=9):
     return ''.join(random.choices(string.digits, k=length))
 
-@app.route('/emp_dashboard/open_digital_account')
+# Open Digital Account Route
+@app.route('/emp_dashboard/open_digital_account', methods=['GET', 'POST'])
 def open_digital_account():
     if request.method == 'POST':
+        # Retrieve form data
         customer_id = request.form.get('customer_id')
-        branch_code = request.form.get('branch_code')
-        account_no = request.form.get('acctno')
+        branch_code = request.form.get('branchcode')
+        acct_no = request.form.get('acctno')
         full_name = request.form.get('full_name')
-        email = request.form.get('email')
-        phone = request.form.get('phone_no')
+        email = request.form.get('email')  
+        phone_no = request.form.get('phone_no')
         address = request.form.get('address')
         d_o_b = request.form.get('d_o_b')
         marital_sts = request.form.get('marital_sts')
         nationality = request.form.get('nationality')
         gender = request.form.get('gender')
         id_card = request.form.get('id_card')
-        occupation = request.form.get('occupation')
-        source_income = request.form.get('soin')
-        monthly_income = request.form.get('monthlyincom')
-        account_type = request.form.get('acctyp')
-        init_dep_amo = request.form.get('init_dep_amo')
-        account_purp = request.form.get('acctporp')
-        debit_req = request.form.get('cardreq')
+        source_of_income = request.form.get('soin')
+        monthly_income = request.form.get('monthlyincom')  
+        acct_type = request.form.get('acctyp')
+        initial_deposit = request.form.get('init_dep_amo')
+        account_purpose = request.form.get('acctporp')  
+        card_req = request.form.get('cardreq')
         online_banking = request.form.get('online_banking')
         cheque_book = request.form.get('chequebook_req')
         sms_alert = request.form.get('sms_alert')
-        term_cond = request.form.get('term_cond')
+        checkbox = request.form.get('term_cond')
 
-# validate the fields
-        if not all([customer_id, branch_code, account_no, full_name, email, phone, address, d_o_b, marital_sts, nationality, gender, id_card, occupation, source_income, monthly_income, account_type, init_dep_amo, account_purp, debit_req, online_banking, cheque_book, sms_alert, term_cond]):
-            error = "All fields are required. Please fill them."
-        return render_template('emp_dashboard/open_digital_account.html', error=error)
-    
-    cursor = db.cursor()
-    try:
-        cursor.execute("SELECT COUNT(*) FROM open_digital_ acc WHERE Customer_ID = %s", (customer_id,))
-        if cursor.fetchone()[0] > 0:
-            error = "Customer ID already exists. Please try again."
-            return render_template('emp_dashboard/open_digital_account.html', error=error)
-    
-        cursor.execute("""
-            INSERT INTO open_digital_acc (Customer_ID, Branch_Code, Account_Number, Full_Name, Email, Phone_Number, Address, Date_of_Birth, Marital_Status, Nationality, Gender, ID_Card_Number, Occupation, Source_of_Income, Monthly_Income, Account_Type, Initial_Deposit_Amount, Account_Purpose, Debit_Card_Required, Online_Banking_Access, ChequeBook_Request, SMS_Banking_Alerts, Term_and_Conditions)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """, (customer_id, branch_code, account_no, full_name, email, phone, address, d_o_b, marital_sts, nationality, gender, id_card, occupation, source_income, monthly_income, account_type, init_dep_amo, account_purp, debit_req, online_banking, cheque_book, sms_alert, term_cond))
-        db.commit()
-        return redirect(url_for('account_manage_entity', success=True))
+        # Print form data for debugging
+        print("Received Data:", request.form)
 
-    except Exception as e:
-        db.rollback()
-        error = f"Failed to insert data. Error: {str(e)}"
-        return render_template('emp_dashboard/open_digital_account.html', error=error)
- 
-    finally:
-        cursor.close()
-   
-        # Generate the random IDs
-        customer_id = generate_random_id()
-        acct_no = generate_random_acct_no()
-        return render_template('emp_dashboard/open_digital_account.html', customer_id=customer_id, acct_no=acct_no)
+        # Validate required fields
+        if not all([customer_id, branch_code, acct_no, full_name, email, phone_no, address, d_o_b, marital_sts, 
+                    nationality, gender, id_card, source_of_income, monthly_income, acct_type, initial_deposit, 
+                    account_purpose, card_req, online_banking, cheque_book, sms_alert, checkbox]):
+            error = "All fields are required!"
+            return render_template('/emp_dashboard/open_digital_account.html', error=error)
+
+        cursor = db.cursor()
+        try:
+            # Check if account already exists
+            cursor.execute("SELECT * FROM open_digital_account WHERE Customer_ID = %s", (customer_id,))
+            if cursor.fetchone():
+                error = "Customer ID already exists!"
+                return render_template('/emp_dashboard/open_digital_account.html', error=error)
+
+            # Insert into database
+            sql = """
+                INSERT INTO open_digital_account (Customer_ID, Branch_Code, Account_Number, Full_Name, Email, Phone_Number, Address, 
+                Date_of_Birth, Marital_Status, Nationality, Gender, ID_Card_Number, Source_of_Income, Monthly_Income, Account_Type, Initial_Deposit_Amount, 
+                Account_Purpose, Debit_Card_Required, Online_Banking_Access, CheckBook_Request, SMS_Banking_Alerts, Term_and_Conditions)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (customer_id, branch_code, acct_no, full_name, email, phone_no, address, d_o_b, marital_sts, 
+                      nationality, gender, id_card, source_of_income, monthly_income, acct_type, initial_deposit, 
+                      account_purpose, card_req, online_banking, cheque_book, sms_alert, checkbox)
+
+            cursor.execute(sql, values)
+            db.commit()
+            
+            return render_template('/emp_dashboard/open_digital_account.html', success=True)
+        
+        except MySQLdb.Error as e:
+            error = f"Database error: {str(e)}"
+            print(error)  # Log the error
+            return render_template('/emp_dashboard/open_digital_account.html', error=error)
+
+        finally:
+            cursor.close()
+
+    # Generate random IDs when the page is first loaded
+    customer_id = generate_random_id()
+    acct_no = generate_random_acct_no()
+    return render_template('emp_dashboard/open_digital_account.html', customer_id=customer_id, acct_no=acct_no)
 
 # card management
 @app.route('/emp_dashboard/card_management')

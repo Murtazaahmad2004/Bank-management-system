@@ -113,7 +113,7 @@
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Open Digital Account</h1>
-        <form method="POST" action="/open_digital_account">
+        <form method="POST" action="/emp_dashboard/open_digital_account">
             <input type="hidden" name="action" value="register">
 
             <label for="customer_id">Customer ID:</label>
@@ -128,8 +128,8 @@
             <label for="full_name">Full Name:</label>
             <input type="text" id="full_name" name="full_name" placeholder="Enter your Full Name" required>
             
-            <label for="emial">Email:</label>
-            <input type="text" id="emial" name="emial" placeholder="Enter your Email" required>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Enter your Email" required>
 
             <label for="phone_no">Phone Number:</label>
             <input type="number" id="phone_no" name="phone_no" placeholder="Enter your Phone Number" required>
@@ -181,10 +181,7 @@
 
             <label for="id_card">ID Card Number:</label>
             <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
-
-            <label for="occup">Occupation:</label>
-            <input type="text" id="occup" name="occup" placeholder="Enter your Occupation" required>
-
+            
             <label for="soin">Source Of Income:</label>
             <input type="text" id="soin" name="soin" placeholder="Enter your Source Of Income" required>
 
@@ -215,7 +212,7 @@
                 </div>
 
                 <label for="init_dep_amo">Initial Deposit Amount:</label>
-                <input type="text" id="init_dep_amo" name="init_dep_amo" placeholder="Enter Initial Deposit Amount" required>
+                <input type="number" id="init_dep_amo" name="init_dep_amo" placeholder="Enter Initial Deposit Amount" required>
 
                 <label for="acctporp">Account Purpose:</label>
                 <div class="radio-group">
@@ -279,7 +276,6 @@
                 <label>
                     <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
                 </label>
-
             <button type="submit">Submit</button>
         </form>
     </div>
