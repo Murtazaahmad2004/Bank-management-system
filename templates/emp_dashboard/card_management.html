@@ -113,7 +113,7 @@
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Apply Card</h1>
-        <form method="POST" action="/card_management">
+        <form method="POST" action="/emp_dashboard/card_management">
             <input type="hidden" name="action" value="register">
 
             <label for="custm_id">Customer ID:</label>
@@ -155,20 +155,20 @@
             <label for="id_card">ID Card Number:</label>
             <input type="number" id="id_card" name="id_card" placeholder="Enter your ID Card Number" required>
 
-                <label for="international_trns">Allow International Transactions:</label>
-                <div class="radio-item">
-                    <input type="radio" id="Yes" name="international_trns" value="Yes" required>
-                    <label for="Yes">Yes</label>
-                    <input type="radio" id="No" name="international_trns" value="No" required>
-                    <label for="No">No</label>
-                </div>
+            <label for="international_trns">Allow International Transactions:</label>
+            <div class="radio-item">
+                <input type="radio" id="Yes" name="international_trns" value="Yes" required>
+                <label for="Yes">Yes</label>
+                <input type="radio" id="No" name="international_trns" value="No" required>
+                <label for="No">No</label>
+            </div>
 
-                <label for="daily_limit">Daily Withdrawal Limit:</label>
-                <input type="number" id="daily_limit" name="daily_limit" placeholder="Enter Daily Limit" required>
+            <label for="daily_limit">Daily Withdrawal Limit:</label>
+            <input type="number" id="daily_limit" name="daily_limit" placeholder="Enter Daily Limit" required>
 
-                <label>
-                    <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
-                </label>
+            <label>
+                <input type="checkbox" name="term_cond" value="Yes">Term & Conditions
+            </label>
 
             <button type="submit">Submit</button>
         </form>
