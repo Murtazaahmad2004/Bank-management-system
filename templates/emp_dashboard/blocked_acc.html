@@ -107,13 +107,48 @@
             gap: 5px; /* Space between radio and label */
         }
 
+        .footer {
+            width: 100%;
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
+        }
+
+        .navbar-header h1{
+            color: white;
+            font-size: 2em;
+            margin: 0px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <h1>United Bank Limited</h1>
+        </div>
+    </div>
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Blocked Account</h1>
-        <form method="POST" action="/blocked_acc">
+        <form method="POST" action="/emp_dashboard/blocked_acc">
             <input type="hidden" name="action" value="register">
 
             <label for="customer_id">Customer ID:</label>
@@ -184,6 +219,9 @@
 
             <button type="submit">Submit</button>
         </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 United Bank Limited. All rights reserved.</p>
     </div>
 </body>
 </html>

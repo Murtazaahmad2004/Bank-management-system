@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Show Balance</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+    .footer {
+        width: 100%;
+        background-color: #004A99;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #004A99;
+        padding: 0 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 70px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center contents horizontally */
+        text-align: center;
+    }
+
+    .navbar-header {
+        color: white;
+        font-size: 1em;
+        margin: 0px;
+    }
+
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <h1>United Bank Limited</h1>
+        </div>
+    </div>
+    
+    <h1>Customer Balance Checker</h1>
+
+    <label for="customerIdInput">Enter Customer ID:</label>
+    <input type="number" id="customerIdInput" placeholder="e.g. 1001">
+
+    <button id="showBalanceBtn">Show Balance</button>
+
+    <p id="balanceDisplay">Balance: </p>
+
+    <script>
+        $(document).ready(function() {
+            $("#showBalanceBtn").click(function() {
+                const customerId = $("#customerIdInput").val();
+                if (!customerId) {
+                    alert("Please enter a Customer ID.");
+                    return;
+                }
+
+                $.ajax({
+                    url: "/get_customer_balance",
+                    type: "GET",
+                    data: { customer_id: customerId },
+                    success: function(response) {
+                        $("#balanceDisplay").text("Balance: Rs. " + response.balance);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <div class="footer">
+        <p>&copy; 2023 United Bank Limited. All rights reserved.</p>
+    </div>
+</body>
+</html>

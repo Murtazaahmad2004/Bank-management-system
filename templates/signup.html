@@ -22,15 +22,16 @@
         .navbar {
             width: 100%;
             background-color: #004A99;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 0 20px;
             position: fixed;
             top: 0;
             left: 0;
-            height: 60px;
+            height: 70px;
             z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
         }
 
         .navbar h1 {
@@ -127,6 +128,16 @@
             gap: 5px;
         }
 
+        .footer {
+            width: 100%;
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+        
     </style>
 </head>
 <body>
@@ -141,7 +152,7 @@
         <div class="login-container">
             <h2>United Bank Limited</h2>
                 <h1>Sign Up</h1>
-                <form method="POST" action="/register">
+                <form method="POST" action="/signup">
                     <input type="hidden" name="action" value="register">
             
                     <label for="user_id">User ID:</label>
@@ -204,5 +215,8 @@
         });
     </script>
 
+    <div class="footer">
+        <p>&copy; 2023 United Bank Limited. All rights reserved.</p>
+    </div>
 </body>
 </html>

@@ -107,13 +107,48 @@
             gap: 5px; /* Space between radio and label */
         }
 
+        .footer {
+            width: 100%;
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
+        }
+
+        .navbar-header h1{
+            color: white;
+            font-size: 2em;
+            margin: 0px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <h1>United Bank Limited</h1>
+        </div>
+    </div>
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Add New User</h1>
-        <form action="/add_user" method="POST">
+        <form method="POST" action="/admin_dashboard/add_user">
             
             <input type="hidden" name="action" value="login">
 
@@ -180,8 +215,8 @@
                     
                 </div>
 
-            <label for="Salary">Salary Per Month:</label>
-            <input type="Salary" name="Salary" placeholder="Enter your Salary" required>
+            <label for="salary">Salary Per Month:</label>
+            <input type="salary" name="salary" placeholder="Enter your Salary" required>
 
             <label for="d_o_join">Date of Joining:</label>
             <input type="date" name="d_o_join" placeholder="Enter your Date of Joining" required>
@@ -192,6 +227,9 @@
 
             <button type="submit">Submit</button>
         </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 United Bank Limited. All rights reserved.</p>
     </div>
 </body>
 </html>

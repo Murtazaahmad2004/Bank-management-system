@@ -25,20 +25,25 @@
             width: 100%;
             background-color: #004A99;
             padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             position: fixed;
             top: 0;
             left: 0;
             height: 70px;
             z-index: 100;
+            display: flex;
+            align-items: center;
         }
 
         .navbar-header h1 {
             color: white;
             font-size: 1.5em;
             margin: 0px;
+        }
+
+        .nav-button {
+            margin-left: auto; /* Pushes buttons to the right */
+            display: flex;
+            gap: 10px; /* Adds space between buttons */
         }
 
         .nav-button button {
@@ -75,7 +80,7 @@
             <button onclick="window.location.href='/login_user_employee_auth'">Login</button>
             <button onclick="window.location.href='/signup'">Create New Account</button>
         </div>
-    </div>   
+    </div>       
     
     <div class="content">
         <div class="login-container">

@@ -107,26 +107,45 @@
             gap: 5px; /* Space between radio and label */
         }
 
-        .success-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #4CAF50;
+        .footer {
+            width: 100%;
+            background-color: #004A99;
             color: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            font-size: 1.2em;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInOut 3s ease forwards;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
         }
 
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
+        }
+
+
+        .navbar-header h1{
+            color: white;
+            font-size: 2em;
+            margin: 0px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <h1>United Bank Limited</h1>
+        </div>
+    </div>
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Open Digital Account</h1>
@@ -296,12 +315,8 @@
             <button type="submit">Submit</button>
         </form>
     </div>
-
-    <!-- Success Message -->
-    {% if success %}
-    <div class="success-modal">
-        Account Open successfully!
+    <div class="footer">
+        <p>&copy; 2023 Your Company Name. All rights reserved.</p>
     </div>
-    {% endif %}
 </body>
 </html>

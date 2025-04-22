@@ -107,17 +107,55 @@
             gap: 5px; /* Space between radio and label */
         }
 
+        .footer {
+            width: 100%;
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
+        }
+
+        .navbar-header h1{
+            color: white;
+            font-size: 2em;
+            margin: 0px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <h1>United Bank Limited</h1>
+        </div>
+    </div>
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Loan Application</h1>
-        <form method="POST" action="/loan_application">
+        <form method="POST" action="/admin_dashboard/loan_application">
             <input type="hidden" name="action" value="register">
 
+            <!-- <label for="cust_id">Customer ID:</label>
+            <input type="number" id="cust_id" name="cust_id" value="{{cust_id}}" readonly required> -->
+
             <label for="cust_id">Customer ID:</label>
-            <input type="number" id="cust_id" name="cust_id" value="{{cust_id}}" readonly required>
+            <input type="number" id="cust_id" name="cust_id" placeholder="Enter Customer ID"required>
 
             <label for="acctno">Account Number:</label>
             <input type="number" id="acctno" name="acctno" placeholder="Enter Account Number" required>
@@ -125,8 +163,8 @@
             <label for="full_name">Full Name:</label>
             <input type="text" id="full_name" name="full_name" placeholder="Enter your Full Name" required>
             
-            <label for="emial">Email:</label>
-            <input type="text" id="emial" name="emial" placeholder="Enter your Email" required>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" placeholder="Enter your Email" required>
 
             <label for="phone_no">Phone Number:</label>
             <input type="number" id="phone_no" name="phone_no" placeholder="Enter your Phone Number" required>
@@ -163,6 +201,12 @@
                 <label for="application_date">Application Date:</label>
                 <input type="date" id="application_date" name="application_date" required>
 
+                <label for="return_date">return Date:</label>
+                <input type="date" id="return_date" name="return_date" required>
+
+                <label for="loan_period">Loan Period:</label>
+                <input type="text" id="loan_period" name="loan_period" placeholder="Enter Loan Period in Months" required>
+
                 <label for="application_stats">Application Status:</label>
                 <select id="application_stats" name="application_stats" required>
                     <option value="Pending">Pending</option>
@@ -176,6 +220,9 @@
 
             <button type="submit">Submit</button>
         </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 United Bank Limited. All rights reserved.</p>
     </div>
 </body>
 </html>

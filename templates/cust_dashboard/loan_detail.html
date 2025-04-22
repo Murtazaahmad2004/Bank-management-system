@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 14px;
+            width: 300px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #004A99;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004A99;
+        }
+        
+        .error {
+            color: red;
+            font-size: 16px;
+        }
+
+        .footer {
+            width: 100%;
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
+        }
+
+        .navbar-header {
+            color: white;
+            font-size: 1em;
+            margin: 0px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Customer Data</h1>
+</header>
+
+<div class="container">
+    <!-- Form to search for customer data -->
+    <form method="POST" action="/cust_dashboard/loan_detail">
+        <label for="id_card">Enter ID Card Number:</label>
+        <input type="number" id="id_card" name="id_card" placeholder="Enter ID Card Number" required>
+        <button type="submit">Find</button>
+    </form>
+
+    <!-- Display error message -->
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <!-- Display loan application data -->
+    {% if loan_list %}
+    <h2>Loan Details</h2>
+    <ul>
+        {% for loan_application in loan_list %}
+        <li><strong>Customer ID:</strong> {{ loan_application.Customer_ID }}</li>
+        <li><strong>Full Name:</strong> {{ loan_application.Full_Name }}</li>
+        <li><strong>Account_Number:</strong> {{ loan_application.Account_Number }}</li>
+        <li><strong>Email:</strong> {{ loan_application.Email }}</li>
+        <li><strong>Phone No:</strong> {{ loan_application.Phone_No }}</li>
+        <li><strong>ID_Card_Number:</strong> {{ loan_application.ID_Card_Number}}</li>
+        <li><strong>Loan_Type:</strong> {{ loan_application.Loan_Type }}</li>
+        <li><strong>Amount_Requested:</strong> {{ loan_application.Amount_Requested }}</li>
+        <li><strong>Application_Date:</strong> {{ loan_application.Application_Date }}</li>
+        <li><strong>Date of Birth:</strong> {{ loan_application.Date_of_Birth }}</li>
+        <li><strong>Account Type:</strong> {{ loan_application.Account_Type }}</li>
+        <li><strong>Return_Date:</strong> {{ loan_application.Return_Date }}</li>
+        <li><strong>Loan_Period:</strong> {{ loan_application.Loan_Period }}</li>
+        <li><strong>Application_Status:</strong> {{ loan_application.Application_Status }}</li>
+        <br>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+<div class="footer">
+    <p>&copy; 2023 United Bank Limited. All rights reserved.</p>
+</div>
+</body>
+</html>

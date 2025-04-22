@@ -107,13 +107,48 @@
             gap: 5px; /* Space between radio and label */
         }
 
+        .footer {
+            width: 100%;
+            background-color: #004A99;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #004A99;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 70px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center contents horizontally */
+            text-align: center;
+        }
+
+        .navbar-header h1{
+            color: white;
+            font-size: 2em;
+            margin: 0px;
+        }
     </style>
 </head>
 <body>
+    <div class="navbar">
+        <div class="navbar-header">
+            <h1>United Bank Limited</h1>
+        </div>
+    </div>
     <div class="overlay"></div>
     <div class="signup-container">
         <h1>Deposite Money</h1>
-        <form method="POST" action="/card_management">
+        <form method="POST" action="/emp_dashboard/deposit_money">
             <input type="hidden" name="action" value="register">
 
             <label for="cus_id">Customer ID</label>
@@ -124,26 +159,6 @@
                     <div class="radio-item">
                         <input type="radio" id="PKR" name="currency" value="PKR" required>
                         <label for="PKR">PKR</label>
-                    </div>
-                    
-                    <div class="radio-item">
-                        <input type="radio" id="USD" name="currency" value="USD" required>
-                        <label for="USD">USD</label>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" id="EURO" name="currency" value="EURO" required>
-                        <label for="EURO">EURO</label>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" id="GBP" name="currency" value="GBP" required>
-                        <label for="GBP">GBP</label>
-                    </div>
-
-                    <div class="radio-item">
-                        <input type="radio" id="Others" name="currency" value="Others" required>
-                        <label for="Others">Others</label>
                     </div>
                 </div>
 
@@ -160,16 +175,16 @@
             <input type="date" id="tody_date" name="tody_date" required>
 
             <label for="denom">Denominations:</label>
-            <select>
-                <option value="5000">5000</option>
-                <option value="1000">1000</option>
-                <option value="500">500</option>
-                <option value="100">100</option>
-                <option value="50">50</option>
-                <option value="20">20</option>
-                <option value="10">10</option>
-                <option value="coins">Coins</option>
-            </select>
+                <select name="denom" id="denom">
+                    <option value="5000">5000</option>
+                    <option value="1000">1000</option>
+                    <option value="500">500</option>
+                    <option value="100">100</option>
+                    <option value="50">50</option>
+                    <option value="20">20</option>
+                    <option value="10">10</option>
+                    <option value="coins">Coins</option>
+                </select>
 
             <label for="count">Enter Numbers of Notes:</label>
             <input type="number" id="count" name="count" placeholder="Enter Numbers of Notes" required>
@@ -177,8 +192,8 @@
             <label for="total">Total Amount:</label>
             <input type="number" id="total" name="total" placeholder="Enter Total Amount" required>
 
-            <label for="deposite_by">Depositer Name:</label>
-            <input type="text" id="deposite_by" name="deposite_by" placeholder="Enter Depositer Name" required>
+            <label for="deposit_by">Depositer Name:</label>
+            <input type="text" id="deposite_by" name="deposit_by" placeholder="Enter Depositer Name" required>
 
             <label for="receiver_by">Receiver Name:</label>
             <input type="text" id="receiver_by" name="receiver_by" placeholder="Enter Receiver Name" required>
@@ -195,6 +210,9 @@
 
             <button type="submit">Submit</button>
         </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 Your Company Name. All rights reserved.</p>
     </div>
 </body>
 </html>
