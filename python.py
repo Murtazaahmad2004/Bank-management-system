@@ -209,17 +209,6 @@ def login_user_employee_auth_page():
     # GET request shows login form
     return render_template('/login_user_employee_auth.html')
 
-# add user
-@app.route('/add_user')
-def add_user():
-    def generate_random_id(length=5):
-        return ''.join(random.choices(string.digits, k=length))
-    
-    # Generate the random IDs
-    user_id = generate_random_id()
-
-    return render_template('admin_dashboard/add_user.html', user_id=user_id)
-
 # Route to Get Total Balance from Deposit Table
 @app.route('/get_balance', methods=['GET'])
 def get_balance():
@@ -468,7 +457,7 @@ def cheque_book_management():
              # Insert into database
             sql = """
                 INSERT INTO chequebook_management (Customer_ID, Account_Holder_Name, Account_Number, Account_Type, Branch_Name, ChequeBook_Leaves, 
-                ChequeBook_Type, ChequeBook_Delivery_Mode, Urgent_Processing_Required, Term_and_Conditions	)
+                ChequeBook_Type, ChequeBook_Delivery_Mode, Urgent_Processing_Required, Term_and_Conditions)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             values = ([custm_id, holder_name, acctno,  acctyp, branch_name, book_pages, chequebook_typ, delivery_mode, process_time, term_cond])
@@ -548,6 +537,16 @@ def depositmoney():
     return render_template('/emp_dashboard/deposit_money.html')
 
 # add user
+@app.route('/add_user')
+def add_user():
+    def generate_random_id(length=5):
+        return ''.join(random.choices(string.digits, k=length))
+    
+    # Generate the random IDs
+    user_id = generate_random_id()
+
+    return render_template('admin_dashboard/add_user.html', user_id=user_id)
+
 @app.route('/admin_dashboard/add_user', methods=['GET', 'POST'])
 def adduser():
     if request.method == 'POST':
