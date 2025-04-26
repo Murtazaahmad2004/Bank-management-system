@@ -79,11 +79,11 @@ def loan_management():
     return render_template('/admin_dashboard/loan_management.html')
 # End loan management Page #
 
-# Start loan repay Page #
-@app.route('/loan_repay')
-def loan_repay():
-    return render_template('/admin_dashboard/loan_repay.html')
-# End loan repay Page #
+# Start loan application Page #
+@app.route('/loan_application')
+def loan_application():
+    return render_template('/admin_dashboard/loan_application.html')
+# End loan application Page #
 
 # Start loan details Page #
 @app.route('/loan_detail')
@@ -707,15 +707,11 @@ def adduser():
 # End Add User Page #
 
 # Start Loan Application Page #
-def generate_random_cust_id(length=5):
-    return ''.join(random.choices(string.digits, k=length))
-
-# loan application
 @app.route('/admin_dashboard/loan_application', methods=['GET', 'POST'])
 def loan_app():
     if request.method == 'POST':
         #Retrieve form data
-        customer_id = request.form.get('cust_id')
+        cust_id = request.form.get('cust_id')
         acctno = request.form.get('acctno')
         full_name = request.form.get('full_name')
         email = request.form.get('email')
@@ -733,7 +729,7 @@ def loan_app():
         print("Received Data:", request.form)
 
         # Validate required fields
-        if not all([customer_id, acctno, full_name, email, phone_no, id_card, loan_typ, amont_req, 
+        if not all([cust_id, acctno, full_name, email, phone_no, id_card, loan_typ, amont_req, 
                     application_date, return_date, loan_period, application_stats, term_cond]):
             error = "All fields are required!"
             return render_template('/admin_dashboard/loan_application.html', error=error)
@@ -741,7 +737,7 @@ def loan_app():
         cursor = db.cursor()
         try:
             # Check if card already exists
-            cursor.execute("SELECT * FROM loan_application WHERE Customer_ID = %s", (customer_id,))
+            cursor.execute("SELECT * FROM loan_application WHERE Customer_ID = %s", (cust_id,))
             if cursor.fetchone():
                 error = "Customer ID already exists!"
                 return render_template('/admin_dashboard/loan_application.html', error=error)
@@ -752,7 +748,7 @@ def loan_app():
                 Loan_Type, Amount_Requested, Application_Date, Return_Date, Loan_Period, Application_Status, Term_and_Conditions)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s , %s)
             """
-            values = ([customer_id, acctno, full_name, email, phone_no, id_card, loan_typ, amont_req, 
+            values = ([cust_id, acctno, full_name, email, phone_no, id_card, loan_typ, amont_req, 
                        application_date, return_date, loan_period, application_stats, term_cond])
 
             cursor.execute(sql, values)
@@ -767,8 +763,8 @@ def loan_app():
         
         finally:
             cursor.close()
-    Customer_ID = generate_random_cust_id()
-    return render_template('/admin_dashboard/loan_application.html', Customer_ID=Customer_ID)
+
+    return render_template('/admin_dashboard/loan_application.html')
 # End Loan Application Page #
 
 # Start Report Page #
