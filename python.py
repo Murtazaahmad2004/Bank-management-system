@@ -43,71 +43,85 @@ class Customer(User):
 
 # Routes
 
-# Homepage
+# Start Homepage #
 @app.route('/')
 def home():
     return render_template('first_screen.html')
+# End Home Page #
 
-# Account Management Page
+# Start Account Management Page #
 @app.route('/emp_dashboard/account_manage_entity')
 def account_manage_entity():
     return render_template('/emp_dashboard/account_manage_entity.html')
+# End Account Management Page #
 
-#Deposite
+# Start Deposite Money Page #
 @app.route('/emp_dashboard/deposit_money')
 def deposit_money():
     return render_template('emp_dashboard/deposit_money.html')
+# End Deposite Money Page #
 
-# Manager dashboard
+# Start Manager dashboard Page #
 @app.route('/manager_dashboard')
 def manager_dashboard():
     return render_template('admin_dashboard/manager_dashboard.html')
+# End Manager dashboard Page #
 
-# user management
+# Start User Management Page #
 @app.route('/user_management')
 def user_management():
     return render_template('admin_dashboard/user_management.html')
+# End User Management Page #
 
-#loan management
+# Start loan management Page #
 @app.route('/loan_management')
 def loan_management():
     return render_template('/admin_dashboard/loan_management.html')
+# End loan management Page #
 
-# loan repay
+# Start loan repay Page #
 @app.route('/loan_repay')
 def loan_repay():
     return render_template('/admin_dashboard/loan_repay.html')
+# End loan repay Page #
 
-# balance
-@app.route('/balance')
-def balance():
-    return render_template('/cust_dashboard/balance.html')
-
-# report
-@app.route('/reports')
-def report():
-    return render_template('/cust_dashboard/reports.html')
-
-# customer dashboard
-@app.route('/customer_dashboard')
-def customer_dashboard():
-    return render_template('/cust_dashboard/customer_dashboard.html')
-
-#loan details
+# Start loan details Page #
 @app.route('/loan_detail')
 def loan_detail():
     return render_template('/cust_dashboard/loan_detail.html')
+# End loan details Page #
 
-# card mang
+# Start balance Page #
+@app.route('/balance')
+def balance():
+    return render_template('/cust_dashboard/balance.html')
+# End balance Page #
+
+# Start report Page #
+@app.route('/reports')
+def report():
+    return render_template('/cust_dashboard/reports.html')
+# End report Page #
+
+# Start customer dashboard Page #
+@app.route('/customer_dashboard')
+def customer_dashboard():
+    return render_template('/cust_dashboard/customer_dashboard.html')
+# End customer dashboard Page #
+
+# Start card mang Page #
 @app.route('/card_mang')
 def card_mang():
     return render_template('/cust_dashboard/card_mang.html')
+# End card mang Page #
 
-# Signup Page
+# Start Sign Up Page #
+# Signup Page Auto Generated ID
 def generate_random_id(length=5):
     """Generate a random numeric ID of specified length."""
     return ''.join(random.choices(string.digits, k=length))
 
+# Signup Page
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -137,7 +151,7 @@ def signup():
             # Insert into database
             sql = """
                 INSERT INTO signup (User_ID, First_Name, Last_Name, Email, Phone_No, Address, 
-                Date_of_Birth, Gender, Password, Confirm_Password	)
+                Date_of_Birth, Gender, Password, Confirm_Password)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             values = (user_id, first_name, last_name, email, phone_no, address, 
@@ -159,7 +173,9 @@ def signup():
 # For GET request, pre-generate random IDs
     user_id = generate_random_id()
     return render_template('signup.html', user_id=user_id)
+# End Sign Up Page #
 
+# Start Login Page #
 # Login Page
 @app.route('/login_user_employee_auth', methods=['GET', 'POST'])
 def login_user_employee_auth_page():
@@ -183,7 +199,7 @@ def login_user_employee_auth_page():
 
             if user:
                 # Log successful login
-                cursor.execute("INSERT INTO login_authntication (ID, Password) VALUES (%s, %s)", (userid, password))
+                cursor.execute("INSERT INTO login_authentication (ID, Password) VALUES (%s, %s)", (userid, password))
                 db.commit()
 
                   # 3. Redirect to employee dashboard
@@ -208,18 +224,96 @@ def login_user_employee_auth_page():
 
     # GET request shows login form
     return render_template('/login_user_employee_auth.html')
+# End Login Page #
 
-# Route to Get Total Balance from Deposit Table
-@app.route('/get_balance', methods=['GET'])
-def get_balance():
-    cursor = db.cursor()
-    cursor.execute("SELECT SUM(amount) AS total_balance FROM deposit")  # Adjust table name if needed
-    result = cursor.fetchone()
-    total_balance = result['total_balance'] if result['total_balance'] else 0  # Handle NULL case
-    return jsonify({'balance': total_balance})
+# Start Open Acc Page #
+# open acc Auto generated ID
+def generate_random_customer_id(length=5):
+    """Generate a random numeric ID of specified length."""
+    return ''.join(random.choices(string.digits, k=length))
 
-# open acc
 def generate_random_acct_no(length=9):
+    return ''.join(random.choices(string.digits, k=length))
+
+# Open Digi Acc Route
+@app.route('/cust_dashboard/open_digi_acc', methods=['GET', 'POST'])
+def open_digi_account():
+    if request.method == 'POST':
+        # Retrieve form data
+        customer_id = request.form.get('customer_id')
+        branch_code = request.form.get('branchcode')
+        acct_no = request.form.get('acctno')
+        full_name = request.form.get('full_name')
+        email = request.form.get('email')  
+        phone_no = request.form.get('phone_no')
+        address = request.form.get('address')
+        d_o_b = request.form.get('d_o_b')
+        marital_sts = request.form.get('marital_sts')
+        nationality = request.form.get('nationality')
+        gender = request.form.get('gender')
+        id_card = request.form.get('id_card')
+        source_of_income = request.form.get('soin')
+        monthly_income = request.form.get('monthlyincom')  
+        acct_type = request.form.get('acctyp')
+        initial_deposit = request.form.get('init_dep_amo')
+        account_purpose = request.form.get('acctporp')  
+        card_req = request.form.get('cardreq')
+        online_banking = request.form.get('online_banking')
+        cheque_book = request.form.get('chequebook_req')
+        sms_alert = request.form.get('sms_alert')
+        checkbox = request.form.get('term_cond')
+
+        # Print form data for debugging
+        print("Received Data:", request.form)
+
+        # Validate required fields
+        if not all([customer_id, branch_code, acct_no, full_name, email, phone_no, address, d_o_b, marital_sts, 
+                    nationality, gender, id_card, source_of_income, monthly_income, acct_type, initial_deposit, 
+                    account_purpose, card_req, online_banking, cheque_book, sms_alert, checkbox]):
+            error = "All fields are required!"
+            return render_template('/cust_dashboard/open_digi_acc.html', error=error)
+
+        cursor = db.cursor()
+        try:
+            # Check if account already exists
+            cursor.execute("SELECT * FROM emp_dash_open_digital_account WHERE Customer_ID = %s", (customer_id,))
+            if cursor.fetchone():
+                error = "Customer ID already exists!"
+                return render_template('/cust_dashboard/open_digi_acc.html', error=error)
+
+            # Insert into database
+            sql = """
+                INSERT INTO emp_dash_open_digital_account (Customer_ID, Branch_Code, Account_Number, Full_Name, Email, Phone_Number, Address, 
+                Date_of_Birth, Marital_Status, Nationality, Gender, ID_Card_Number, Source_of_Income, Monthly_Income, Account_Type, Initial_Deposit_Amount, 
+                Account_Purpose, Debit_Card_Required, Online_Banking_Access, CheckBook_Request, SMS_Banking_Alerts, Term_and_Conditions)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """
+            values = (customer_id, branch_code, acct_no, full_name, email, phone_no, address, d_o_b, marital_sts, 
+                      nationality, gender, id_card, source_of_income, monthly_income, acct_type, initial_deposit, 
+                      account_purpose, card_req, online_banking, cheque_book, sms_alert, checkbox)
+
+            cursor.execute(sql, values)
+            db.commit()
+            
+            return render_template('/cust_dashboard/open_digi_acc.html', success=True)
+        
+        except MySQLdb.Error as e:
+            error = f"Database error: {str(e)}"
+            print(error)  # Log the error
+            return render_template('/cust_dashboard/open_digi_acc.html', error=error)
+
+        finally:
+            cursor.close()
+
+    # Generate random IDs when the page is first loaded
+    customer_id = generate_random_customer_id()
+    acct_no = generate_random_acct_no()
+    return render_template('cust_dashboard/open_digi_acc.html', customer_id=customer_id, acct_no=acct_no)
+# End Open Acc Page #
+
+# Start Emp Dashboard Open Digital Account Page #
+def generate_random_customer_id(length=5):
+    """Generate a random numeric ID of specified length."""
     return ''.join(random.choices(string.digits, k=length))
 
 # Open Digital Account Route
@@ -293,16 +387,18 @@ def open_digital_account():
             cursor.close()
 
     # Generate random IDs when the page is first loaded
+    customer_id = generate_random_customer_id()
     acct_no = generate_random_acct_no()
-    return render_template('emp_dashboard/open_digital_account.html', acct_no=acct_no)
+    return render_template('emp_dashboard/open_digital_account.html', customer_id=customer_id, acct_no=acct_no)
+# End Emp Dashboard Open Digital Account Page #
 
-# card management
+# Start Card Management Page #
 def generate_random_card_no(length=16):
     return ''.join(random.choices(string.digits, k=length))
 
 def generate_random_cvv(length=3):
     return ''.join(random.choices(string.digits, k=length))
-    
+
 # card management
 @app.route('/emp_dashboard/card_management', methods=['GET', 'POST'])
 def card_management():
@@ -364,7 +460,9 @@ def card_management():
     card_no = generate_random_card_no()
     cvv = generate_random_cvv()
     return render_template('emp_dashboard/card_management.html', card_no=card_no, cvv=cvv)
+# End Card Management Page #
 
+# Start Blocked Account Page #
 # blocked acc
 @app.route('/emp_dashboard/blocked_acc' , methods=['GET', 'POST'])
 def blocked_accounts():
@@ -421,7 +519,9 @@ def blocked_accounts():
             cursor.close()
 
     return render_template('/emp_dashboard/blocked_acc.html')
+# End Blocked Account Page #
 
+# Start cheque book management Page #
 # cheque book management
 @app.route('/emp_dashboard/chequebook_management', methods=['GET', 'POST'])
 def cheque_book_management():
@@ -474,8 +574,10 @@ def cheque_book_management():
         finally:
             cursor.close()
 
-    return render_template('.html')
+    return render_template('/emp_dashboard/chequebook_management.html')
+# End cheque book management Page #
 
+# Start Deposite Money Page #
 # deposit money
 @app.route('/emp_dashboard/deposit_money', methods=['GET', 'POST'])
 def depositmoney():
@@ -535,7 +637,9 @@ def depositmoney():
             cursor.close()
 
     return render_template('/emp_dashboard/deposit_money.html')
+# End Deposite Money Page #
 
+# Start Add User Page #
 # add user
 @app.route('/add_user')
 def add_user():
@@ -546,7 +650,7 @@ def add_user():
     user_id = generate_random_id()
 
     return render_template('admin_dashboard/add_user.html', user_id=user_id)
-
+#add user
 @app.route('/admin_dashboard/add_user', methods=['GET', 'POST'])
 def adduser():
     if request.method == 'POST':
@@ -600,6 +704,11 @@ def adduser():
             cursor.close()
 
     return render_template('/admin_dashboard/add_user.html')
+# End Add User Page #
+
+# Start Loan Application Page #
+def generate_random_cust_id(length=5):
+    return ''.join(random.choices(string.digits, k=length))
 
 # loan application
 @app.route('/admin_dashboard/loan_application', methods=['GET', 'POST'])
@@ -658,9 +767,11 @@ def loan_app():
         
         finally:
             cursor.close()
+    Customer_ID = generate_random_cust_id()
+    return render_template('/admin_dashboard/loan_application.html', Customer_ID=Customer_ID)
+# End Loan Application Page #
 
-    return render_template('/admin_dashboard/loan_application.html')
-
+# Start Report Page #
 # report
 @app.route('/cust_dashboard/reports', methods=['GET', 'POST'])
 def reports():
@@ -701,7 +812,9 @@ def reports():
             cursor.close()
 
     return render_template('/cust_dashboard/reports.html')
+# End Report Page #
 
+# Start Get Customer Balance Page #
 # Get Customer Balance  
 @app.route('/get_customer_balance', methods=['GET', 'POST'])
 def get_customer_balance():
@@ -735,7 +848,19 @@ def get_customer_loan_details():
     except Exception as e:
         print("Error fetching customer loan details:", e)
         return render_template('/cust_dashboard/loan_detail.html', loan_list=[], error="Error fetching data")
-    
+# Endt Get Customer Balance Page #    
+
+# Start Get Total Balance Page #
+# Route to Get Total Balance from Deposit Table
+@app.route('/get_balance', methods=['GET'])
+def get_balance():
+    cursor = db.cursor()
+    cursor.execute("SELECT SUM(amount) AS total_balance FROM deposit")  # Adjust table name if needed
+    result = cursor.fetchone()
+    total_balance = result['total_balance'] if result['total_balance'] else 0  # Handle NULL case
+    return jsonify({'balance': total_balance})
+# End Get Total Balance Page #
+
 # Run the app
 if __name__ == '__main__':
     app.run(debug=True)
